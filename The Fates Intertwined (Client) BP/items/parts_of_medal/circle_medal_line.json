@@ -1,0 +1,16 @@
+{
+	"format_version": "1.20.20",
+	"minecraft:item": {
+		"description": {
+			"identifier": "fec:circle_medal_line",
+			"menu_category": {
+				"category": "items"
+			}
+		},
+		"components": {
+			"minecraft:icon": {
+				"texture": "fec_circle_medal_line"
+			}
+		}
+	}
+}

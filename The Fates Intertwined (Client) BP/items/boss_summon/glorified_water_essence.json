@@ -1,0 +1,38 @@
+{
+	"format_version": "1.20.20",
+	"minecraft:item": {
+		"description": {
+			"identifier": "fec:glorified_water_essence",
+			"menu_category": {
+				"category": "items"
+			}
+		},
+		"components": {
+			"minecraft:icon": {
+				"texture": "fec_glorified_water_essence"
+			},
+			"minecraft:max_stack_size": 1,
+			"minecraft:on_use": {
+				"on_use": {
+					"event": "start_summon"
+				}
+			},
+			"minecraft:cooldown": {
+				"category": "boss_summon",
+				"duration": 120
+			},
+			"minecraft:display_name": {
+				"value": "§6Glorified Water Essence\n§8A Essence that used for preparing the Water Ritual"
+			}
+		},
+		"events": {
+			"start_summon": {
+				"run_command": {
+					"command": [
+						"summon fec:water_eidolon ^^^3"
+					]
+				}
+			}
+		}
+	}
+}

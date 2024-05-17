@@ -1,0 +1,19 @@
+{
+	"format_version": "1.20.20",
+	"minecraft:item": {
+		"description": {
+			"identifier": "fec:winterbloom_medal",
+			"menu_category": {
+				"category": "items"
+			}
+		},
+		"components": {
+			"minecraft:icon": {
+				"texture": "fec_winterbloom_medal"
+			},
+			"minecraft:display_name": {
+				"value": "§dWinterbloom Medalion\n§8A Medalion that used to create Winterbloom Related Items"
+			}
+		}
+	}
+}

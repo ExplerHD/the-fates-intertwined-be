@@ -1,0 +1,19 @@
+{
+	"format_version": "1.20.20",
+	"minecraft:item": {
+		"description": {
+			"identifier": "fec:murasama_medal",
+			"menu_category": {
+				"category": "items"
+			}
+		},
+		"components": {
+			"minecraft:icon": {
+				"texture": "fec_murasama_medal"
+			},
+			"minecraft:display_name": {
+				"value": "§dLightning Tajador Medalion\n§8A Medalion that used to create Some Items"
+			}
+		}
+	}
+}

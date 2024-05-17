@@ -1,0 +1,49 @@
+{
+	"format_version": "1.10.0",
+	"animation_controllers": {
+		"controller.animation.water_eidolon": {
+			"initial_state": "idle",
+			"states": {
+				"idle": {
+					"animations": [
+						"idle"
+					],
+					"blend_transition": 0.333,
+					"transitions": [
+						{
+							"move": "q.is_moving"
+						},
+						{
+							"smash": "q.is_roaring"
+						}
+					]
+				},
+				"move": {
+					"animations": [
+						"idle",
+						"move"
+					],
+					"blend_transition": 0.333,
+					"transitions": [
+						{
+							"idle": "!q.is_moving"
+						},
+						{
+							"smash": "q.is_roaring"
+						}
+					]
+				},
+				"smash": {
+					"animations": [
+						"smash"
+					],
+					"transitions": [
+						{
+							"idle": "1"
+						}
+					]
+				}
+			}
+		}
+	}
+}

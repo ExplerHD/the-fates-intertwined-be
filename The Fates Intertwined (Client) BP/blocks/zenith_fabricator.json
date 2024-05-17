@@ -1,0 +1,349 @@
+{
+	"format_version": "1.20.20",
+	"minecraft:block": {
+		"description": {
+			"identifier": "fec:zenith_fabricator",
+			"menu_category": {
+				"category": "items"
+			},
+			"states": {
+				"fec:zenith": [
+					0,
+					1,
+					2,
+					3,
+					4,
+					5,
+					6,
+					7,
+					8,
+					9
+				]
+			}
+		},
+		"components": {
+			"minecraft:geometry": "geometry.zenith_fabricator",
+			"minecraft:material_instances": {
+				"*": {
+					"texture": "fec_zenith_fabricator",
+					"render_method": "alpha_test"
+				}
+			},
+			"minecraft:display_name": "§dLegendary Fabricator\n§8A Blocks that used for crafting Mythical Zenith, this block is §cUNOBTAINABLE",
+			"minecraft:destructible_by_explosion": false,
+			"minecraft:destructible_by_mining": false,
+			"minecraft:light_emission": 7,
+			"minecraft:light_dampening": 0,
+			"minecraft:flammable": false,
+			"minecraft:on_placed": {
+				"event": "placed"
+			},
+			"minecraft:on_player_destroyed": {
+				"event": "destroyed"
+			},
+			"minecraft:on_interact": {
+				"event": "block_modify"
+			}
+		},
+		"events": {
+			"zenith_fabricator": {
+				"set_block_state": {
+					"fec:zenith": 0
+				}
+			},
+			"placed": {
+				"run_command": {
+					"command": [
+						"particle fec:zenith_radial_blast ~~~"
+					]
+				}
+			},
+			"destroyed": {
+				"run_command": {
+					"command": [
+						"particle fec:zenith_radial_blast ~~~",
+						"event entity @e[r=3,type=fec:zenith_base] despawn"
+					]
+				}
+			},
+			"transform": {
+				"set_block_state": {
+					"fec:zenith": 8
+				},
+				"run_command": {
+					"command": [
+						"playsound portal.travel @a[r=16] ~~~ 1 1 0.3",
+						"summon fec:zenith_base ~~~ ~~ done",
+						"tellraw @a[r=16] {\"rawtext\":[{\"text\":\"The process of crafting is done, take this sword, a higher challenge is awaiting you...\"}]}",
+						"particle fec:zenith_marker ~~1.3~",
+						"particle fec:zenith_marker ~~1.5~",
+						"particle fec:zenith_marker ~~1.7~",
+						"particle fec:zenith_marker ~~1.9~",
+						"particle fec:zenith_marker ~~2.1~",
+						"particle fec:zenith_marker ~~2.3~",
+						"particle fec:zenith_marker ~~2.5~",
+						"particle fec:zenith_marker ~~2.7~",
+						"particle fec:zenith_marker ~~2.9~",
+						"particle fec:zenith_radial_blast ~~1.15~"
+					]
+				}
+			},
+			"block_modify": {
+				"sequence": [
+					{
+						"condition": "query.block_state('fec:zenith')==0",
+						"set_block_state": {
+							"fec:zenith": 1
+						},
+						"run_command": {
+							"command": [
+								"summon fec:zenith_base ~~0.3~",
+								"particle fec:wind_marker ~~1.3~",
+								"particle fec:wind_marker ~~1.5~",
+								"particle fec:wind_marker ~~1.7~",
+								"particle fec:wind_marker ~~1.9~",
+								"particle fec:wind_marker ~~2.1~",
+								"particle fec:wind_marker ~~2.3~",
+								"particle fec:wind_marker ~~2.5~",
+								"particle fec:wind_marker ~~2.7~",
+								"particle fec:wind_marker ~~2.9~",
+								"playsound tile.piston.out @a[r=16] ~~~ 1 1 0.3"
+							]
+						}
+					},
+					{
+						"condition": "query.block_state('fec:zenith')==1",
+						"set_block_state": {
+							"fec:zenith": 2
+						},
+						"run_command": {
+							"command": [
+								"playsound tile.piston.in @a[r=16] ~~~ 1 1 0.3"
+							]
+						}
+					},
+					{
+						"condition": "query.get_equipped_item_name('main_hand')=='winterbloom_sword'&&query.block_state('fec:zenith')==2",
+						"set_block_state": {
+							"fec:zenith": 3
+						},
+						"run_command": {
+							"command": [
+								"playsound random.orb @a[r=16] ~~~ 1 1 0.3"
+							]
+						},
+						"decrement_stack": {}
+					},
+					{
+						"condition": "query.get_equipped_item_name('main_hand')=='murasama_calamity'&&query.block_state('fec:zenith')==3",
+						"set_block_state": {
+							"fec:zenith": 4
+						},
+						"run_command": {
+							"command": [
+								"playsound random.orb @a[r=16] ~~~ 1 1 0.3"
+							]
+						},
+						"decrement_stack": {}
+					},
+					{
+						"condition": "query.get_equipped_item_name('main_hand')=='windblade_claymore'&&query.block_state('fec:zenith')==4",
+						"set_block_state": {
+							"fec:zenith": 5
+						},
+						"run_command": {
+							"command": [
+								"playsound random.orb @a[r=16] ~~~ 1 1 0.3"
+							]
+						},
+						"decrement_stack": {}
+					},
+					{
+						"condition": "query.get_equipped_item_name('main_hand')=='blade_of_the_end'&&query.block_state('fec:zenith')==5",
+						"set_block_state": {
+							"fec:zenith": 6
+						},
+						"run_command": {
+							"command": [
+								"playsound random.orb @a[r=16] ~~~ 1 1 0.3"
+							]
+						},
+						"decrement_stack": {}
+					},
+					{
+						"condition": "query.get_equipped_item_name('main_hand')=='nether_star'&&query.block_state('fec:zenith')==6",
+						"set_block_state": {
+							"fec:zenith": 7
+						},
+						"run_command": {
+							"command": [
+								"playsound portal.trigger @a[r=16] ~~~ 1 1 0.3",
+								"event entity @e[type=fec:zenith_base,r=3] despawn",
+								"tellraw @a[r=16] {\"rawtext\":[{\"text\":\"Now wait for the crafting process\"}]}"
+							]
+						},
+						"decrement_stack": {}
+					},
+					{
+						"condition": "query.block_state('fec:zenith')==8",
+						"set_block_state": {
+							"fec:zenith": 9
+						},
+						"spawn_loot": {
+							"table": "loot_tables/equipment/zenith.json"
+						},
+						"run_command": {
+							"command": [
+								"playsound mob.wither.spawn @a[r=16] ~~~ 1 1 0.3",
+								"event entity @e[type=fec:zenith_base,r=3] despawn"
+							]
+						}
+					}
+				]
+			}
+		},
+		"permutations": [
+			{
+				"condition": "query.block_state('fec:zenith') == 0",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "fec_zenith_fabricator",
+							"render_method": "alpha_test"
+						}
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fec:zenith') == 1",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "fec_zenith_fabricator_open",
+							"render_method": "alpha_test"
+						}
+					},
+					"minecraft:queued_ticking": {
+						"interval_range": [
+							20,
+							20
+						],
+						"on_tick": {
+							"event": "block_modify"
+						}
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fec:zenith') == 2",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "fec_zenith_fabricator_start_operate",
+							"render_method": "alpha_test"
+						}
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fec:zenith') == 3",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "fec_zenith_fabricator_start_operate_1",
+							"render_method": "alpha_test"
+						}
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fec:zenith') == 4",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "fec_zenith_fabricator_start_operate_2",
+							"render_method": "alpha_test"
+						}
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fec:zenith') == 5",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "fec_zenith_fabricator_start_operate_3",
+							"render_method": "alpha_test"
+						}
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fec:zenith') == 6",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "fec_zenith_fabricator_start_operate_4",
+							"render_method": "alpha_test"
+						}
+					},
+					"minecraft:light_emission": 15
+				}
+			},
+			{
+				"condition": "query.block_state('fec:zenith') == 7",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "fec_zenith_fabricator_crafting",
+							"render_method": "alpha_test"
+						}
+					},
+					"minecraft:light_emission": 15,
+					"minecraft:queued_ticking": {
+						"interval_range": [
+							900,
+							900
+						],
+						"on_tick": {
+							"event": "transform"
+						}
+					}
+				}
+			},
+			{
+				"condition": "query.block_state('fec:zenith') == 8",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "fec_zenith_fabricator_start_operate",
+							"render_method": "alpha_test"
+						}
+					},
+					"minecraft:light_emission": 7
+				}
+			},
+			{
+				"condition": "query.block_state('fec:zenith') == 9",
+				"components": {
+					"minecraft:material_instances": {
+						"*": {
+							"texture": "fec_zenith_fabricator_stop",
+							"render_method": "alpha_test"
+						}
+					},
+					"minecraft:light_emission": 0,
+					"minecraft:queued_ticking": {
+						"interval_range": [
+							6000,
+							8400
+						],
+						"on_tick": {
+							"event": "zenith_fabricator"
+						}
+					}
+				}
+			}
+		]
+	}
+}

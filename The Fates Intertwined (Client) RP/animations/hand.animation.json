@@ -1,0 +1,106 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.item.hand_1": {
+			"loop": true,
+			"bones": {
+				"rightArm": {
+					"rotation": [
+						"80",
+						"55",
+						"10"
+					],
+					"position": [
+						"8",
+						"0",
+						"30"
+					],
+					"scale": 5
+				}
+			}
+		},
+		"animation.item.hand_3": {
+			"loop": true,
+			"bones": {
+				"rightArm": {
+					"rotation": [
+						"90",
+						"85",
+						"10"
+					],
+					"position": [
+						"-20",
+						"0",
+						"20"
+					],
+					"scale": 5
+				}
+			}
+		},
+		"animation.item.hand_2": {
+			"loop": true,
+			"animation_length": 2,
+			"bones": {
+				"rightArm": {
+					"rotation": [
+						80,
+						70,
+						10
+					],
+					"position": [
+						8,
+						0,
+						10
+					],
+					"scale": 2
+				},
+				"rightItem": {
+					"rotation": [
+						80,
+						70,
+						10
+					],
+					"position": [
+						8,
+						0,
+						10
+					],
+					"scale": 2
+				},
+				"ambience": {
+					"rotation": [
+						80,
+						70,
+						10
+					],
+					"position": [
+						8,
+						0,
+						10
+					],
+					"scale": 2
+				},
+				"ambience2": {
+					"rotation": [
+						80,
+						70,
+						10
+					],
+					"position": [
+						8,
+						0,
+						10
+					],
+					"scale": 2
+				},
+				"view": {
+					"rotation": [
+						0,
+						0,
+						0
+					]
+				}
+			}
+		}
+	}
+}

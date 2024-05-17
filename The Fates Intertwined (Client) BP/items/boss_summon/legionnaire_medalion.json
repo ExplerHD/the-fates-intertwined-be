@@ -1,0 +1,39 @@
+{
+	"format_version": "1.20.20",
+	"minecraft:item": {
+		"description": {
+			"identifier": "fec:legionnaire_medalion",
+			"menu_category": {
+				"category": "items"
+			}
+		},
+		"components": {
+			"minecraft:icon": {
+				"texture": "fec_legionnaire_medalion"
+			},
+			"minecraft:max_stack_size": 1,
+			"minecraft:on_use": {
+				"on_use": {
+					"event": "start_summon"
+				}
+			},
+			"minecraft:cooldown": {
+				"category": "boss_summon",
+				"duration": 120
+			},
+			"minecraft:display_name": {
+				"value": "§6Legionnaire Medalion\n§8A Artifact that used for sumoning the Ancient Elemental Legionnaire"
+			}
+		},
+		"events": {
+			"start_summon": {
+				"run_command": {
+					"command": [
+						"summon fec:elemental_legionnaire ^^^3",
+						"tellraw @a[r=64] {\"rawtext\":[{\"text\":\"<Elemental Legionnaire> Someone was using my old artifacts to summon me? Let's settle this epic duels\"}]}"
+					]
+				}
+			}
+		}
+	}
+}

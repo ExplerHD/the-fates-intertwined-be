@@ -1,0 +1,17 @@
+{
+	"format_version": "1.20.20",
+	"minecraft:item": {
+		"description": {
+			"identifier": "fec:iron_stick",
+			"menu_category": {
+				"category": "items"
+			}
+		},
+		"components": {
+			"minecraft:icon": {
+				"texture": "fec_iron_stick"
+			},
+			"minecraft:hand_equipped": true
+		}
+	}
+}

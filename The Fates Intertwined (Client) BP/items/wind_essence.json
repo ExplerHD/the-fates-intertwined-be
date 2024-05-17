@@ -1,0 +1,22 @@
+{
+	"format_version": "1.20.20",
+	"minecraft:item": {
+		"description": {
+			"identifier": "fec:wind_essence",
+			"menu_category": {
+				"category": "items"
+			}
+		},
+		"components": {
+			"minecraft:icon": {
+				"texture": "fec_wind_essence"
+			},
+			"minecraft:display_name": {
+				"value": "§bWind Essence\n§2Right-click / Tap and Hold to Dash Forward\nSneak and Right-click / Tap and hold to Fly upwards and gives Invicibility when in air\n\n§9Cooldown : 1 Second (Dash Forward), 0.5 Second (Updraft)"
+			},
+			"minecraft:max_stack_size": 1,
+			"minecraft:should_despawn": false
+		},
+		"events": {}
+	}
+}

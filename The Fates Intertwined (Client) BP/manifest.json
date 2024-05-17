@@ -1,0 +1,76 @@
+{
+	"format_version": 2,
+	"header": {
+		"name": "The Fates Interwined 2024.4.1 (Client)",
+		"description": "A Minecraft addons that adds a lot of content that will be updated every 2-3 months",
+		"min_engine_version": [
+			1,
+			20,
+			80
+		],
+		"uuid": "08e421a6-9c86-4a93-9704-2affcb0265df",
+		"version": [
+			2024,
+			6,
+			1
+		]
+	},
+	"modules": [
+		{
+			"type": "data",
+			"uuid": "01c9200b-d1e3-4db5-828e-f5e189b68371",
+			"version": [
+				2024,
+				6,
+				1
+			]
+		},
+		{
+			"uuid": "a5a9b728-05d8-40f4-93bf-2233794cda97",
+			"type": "script",
+			"language": "javascript",
+			"entry": "scripts/main.js",
+			"version": [
+				1,
+				0,
+				0
+			]
+		}
+	],
+	"capabilities": [
+		"experimental_custom_ui",
+		"script_eval"
+	],
+	"dependencies": [
+		{
+			"module_name": "@minecraft/server",
+			"version": "1.11.0-beta"
+		},
+		{
+			"module_name": "@minecraft/server-ui",
+			"version": "1.2.0-beta"
+		},
+		{
+			"uuid": "dbee144b-14b8-4f35-a3ad-ddadb58b487e",
+			"version": [
+				2024,
+				6,
+				1
+			]
+		},
+		{
+			"uuid": "dec5c848-fee6-420d-8a7a-0cc8f878bd7e",
+			"version": [
+				1,
+				0,
+				0
+			]
+		}
+	],
+	"metadata": {
+		"authors": [
+			"ExplerHD"
+		],
+		"product_type": "addon"
+	}
+}

@@ -1,0 +1,3 @@
+diagnostic.disable.molang.syntax.missing_semicolon=true
+diagnostic.disable.molang.syntax.missing_semicolon=true
+diagnostic.disable.molang.query.deprecated=true

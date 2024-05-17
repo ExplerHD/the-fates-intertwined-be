@@ -1,0 +1,165 @@
+{
+	"format_version": "1.10.0",
+	"animation_controllers": {
+		"controller.animation.equip_sensor": {
+			"initial_state": "default",
+			"states": {
+				"default": {
+					"on_entry": [
+						"/tag @s remove rage_of_sakura",
+						"/tag @s remove zenith",
+						"/tag @s remove stars_and_crescent"
+					],
+					"transitions": [
+						{
+							"winterbloom_sword": "query.get_equipped_item_name=='winterbloom_sword'"
+						},
+						{
+							"rage_of_sakura": "query.get_equipped_item_name=='rage_of_sakura'"
+						},
+						{
+							"murasama_calamity": "query.get_equipped_item_name=='murasama_calamity'"
+						},
+						{
+							"spear_of_heart": "query.get_equipped_item_name=='spear_of_heart'"
+						},
+						{
+							"blade_of_the_end": "query.get_equipped_item_name=='blade_of_the_end'"
+						},
+						{
+							"windblade_claymore": "query.get_equipped_item_name=='windblade_claymore'"
+						},
+						{
+							"zenith": "query.get_equipped_item_name=='zenith'"
+						},
+						{
+							"eidolon_4_staff": "query.get_equipped_item_name=='eidolon_4_staff'"
+						},
+						{
+							"stars_and_crescent": "query.get_equipped_item_name=='stars_and_crescent'"
+						}
+					]
+				},
+				"winterbloom_sword": {
+					"on_entry": [
+						"/camera @s set minecraft:third_person"
+					],
+					"on_exit": [
+						"/camera @s clear"
+					],
+					"transitions": [
+						{
+							"default": "query.get_equipped_item_name!='winterbloom_sword'"
+						}
+					]
+				},
+				"rage_of_sakura": {
+					"on_entry": [
+						"/camera @s set minecraft:third_person"
+					],
+					"on_exit": [
+						"/camera @s clear"
+					],
+					"transitions": [
+						{
+							"default": "query.get_equipped_item_name!='rage_of_sakura'"
+						}
+					]
+				},
+				"murasama_calamity": {
+					"on_entry": [
+						"/camera @s set minecraft:third_person"
+					],
+					"on_exit": [
+						"/camera @s clear"
+					],
+					"transitions": [
+						{
+							"default": "query.get_equipped_item_name!='murasama_calamity'"
+						}
+					]
+				},
+				"spear_of_heart": {
+					"on_entry": [
+						"/camera @s set minecraft:third_person"
+					],
+					"on_exit": [
+						"/camera @s clear"
+					],
+					"transitions": [
+						{
+							"default": "query.get_equipped_item_name!='spear_of_heart'"
+						}
+					]
+				},
+				"blade_of_the_end": {
+					"on_entry": [
+						"/camera @s set minecraft:third_person"
+					],
+					"on_exit": [
+						"/camera @s clear"
+					],
+					"transitions": [
+						{
+							"default": "query.get_equipped_item_name!='blade_of_the_end'"
+						}
+					]
+				},
+				"windblade_claymore": {
+					"on_entry": [
+						"/camera @s set minecraft:third_person"
+					],
+					"on_exit": [
+						"/camera @s clear"
+					],
+					"transitions": [
+						{
+							"default": "query.get_equipped_item_name!='windblade_claymore'"
+						}
+					]
+				},
+				"zenith": {
+					"on_entry": [
+						"/camera @s set minecraft:third_person",
+						"/tag @s add zenith"
+					],
+					"on_exit": [
+						"/camera @s clear"
+					],
+					"transitions": [
+						{
+							"default": "query.get_equipped_item_name!='zenith'"
+						}
+					]
+				},
+				"eidolon_4_staff": {
+					"on_entry": [
+						"/camera @s set minecraft:third_person"
+					],
+					"on_exit": [
+						"/camera @s clear"
+					],
+					"transitions": [
+						{
+							"default": "query.get_equipped_item_name!='eidolon_4_staff'"
+						}
+					]
+				},
+				"stars_and_crescent": {
+					"on_entry": [
+						"/camera @s set minecraft:third_person",
+						"/tag @s add stars_and_crescent"
+					],
+					"on_exit": [
+						"/camera @s clear"
+					],
+					"transitions": [
+						{
+							"default": "query.get_equipped_item_name!='stars_and_crescent'"
+						}
+					]
+				}
+			}
+		}
+	}
+}

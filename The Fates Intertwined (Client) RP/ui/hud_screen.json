@@ -1,0 +1,248 @@
+{
+    "boss_health_panel": {
+        "type": "panel",
+        "size": [182, 20],
+        "anchor_from": "top_middle",
+        "anchor_to": "top_middle",
+        "$progress_bar_collection": "boss_bars",
+        "controls": [
+            {
+                "vanilla_bossbar":{
+                    "type":"panel",
+                    "controls":[
+                        {
+                            "boss_name@boss_name_panel": {}
+                        },
+                        { 
+                            "progress_bar_for_collections@common.progress_bar_for_collections": {
+                                "offset": [0, 10]
+                            }
+                        }
+                    ],
+                    "bindings": [
+                        {
+                            "binding_name": "#bossName",
+                            "binding_type": "collection",
+                            "binding_collection_name": "boss_bars"
+                        },
+                        {
+                            "binding_type": "view",
+                            "source_property_name": "(((#bossName - $wither_boss_string) = #bossName) and ((#bossName - $ender_dragon_boss_string) = #bossName) and ((#bossName - $elemental_legionnaire_boss_string) = #bossName)) and ((#bossName - $water_eidolon_boss_string) = #bossName)) and ((#bossName - $shadowplague_guardian_boss_string) = #bossName))",
+                            "target_property_name": "#visible"
+                        }
+                    ]
+                }
+            },
+            {
+                "wither_bossbar@boss_panel.wither_bossbar": {
+                    "offset": [0, -16],
+                    "layer": 2,
+                    "bindings": [
+                        {
+                            "binding_name": "#bossName",
+                            "binding_type": "collection",
+                            "binding_collection_name": "boss_bars"
+                        },
+                        {
+                            "binding_type": "view",
+                            "source_property_name": "(not ((#bossName - $wither_boss_string) = #bossName))",
+                            "target_property_name": "#visible"
+                        }
+                    ]
+                }
+            },
+            {
+                "ender_dragon_bossbar@boss_panel.ender_dragon_bossbar": {
+                    "offset": [0, -16],
+                    "layer": 2,
+                    "bindings": [
+                        {
+                            "binding_name": "#bossName",
+                            "binding_type": "collection",
+                            "binding_collection_name": "boss_bars"
+                        },
+                        {
+                            "binding_type": "view",
+                            "source_property_name": "(not ((#bossName - $ender_dragon_boss_string) = #bossName))",
+                            "target_property_name": "#visible"
+                        }
+                    ]
+                }
+            },
+            {
+                "elemental_legionnaire_bossbar@boss_panel.elemental_legionnaire_bossbar": {
+                    "offset": [0, -16],
+                    "layer": 2,
+                    "bindings": [
+                        {
+                            "binding_name": "#bossName",
+                            "binding_type": "collection",
+                            "binding_collection_name": "boss_bars"
+                        },
+                        {
+                            "binding_type": "view",
+                            "source_property_name": "(not ((#bossName - $elemental_legionnaire_boss_string) = #bossName))",
+                            "target_property_name": "#visible"
+                        }
+                    ]
+                }
+            },
+            {
+                "water_eidolon_bossbar@boss_panel.water_eidolon_bossbar": {
+                    "offset": [0, -16],
+                    "layer": 2,
+                    "bindings": [
+                        {
+                            "binding_name": "#bossName",
+                            "binding_type": "collection",
+                            "binding_collection_name": "boss_bars"
+                        },
+                        {
+                            "binding_type": "view",
+                            "source_property_name": "(not ((#bossName - $water_eidolon_boss_string) = #bossName))",
+                            "target_property_name": "#visible"
+                        }
+                    ]
+                }
+            },
+            {
+                "shadowplague_guardian_bossbar@boss_panel.shadowplague_guardian_bossbar": {
+                    "offset": [0, -16],
+                    "layer": 2,
+                    "bindings": [
+                        {
+                            "binding_name": "#bossName",
+                            "binding_type": "collection",
+                            "binding_collection_name": "boss_bars"
+                        },
+                        {
+                            "binding_type": "view",
+                            "source_property_name": "(not ((#bossName - $shadowplague_guardian_boss_string) = #bossName))",
+                            "target_property_name": "#visible"
+                        }
+                    ]
+                }
+            }
+        ],
+        "bindings": [
+            {
+                "binding_name": "#bar_visible",
+                "binding_type": "collection",
+                "binding_collection_name": "boss_bars",
+                "binding_name_override": "#visible"
+            },
+            {
+                "binding_name": "#bossName",
+                "binding_type": "collection",
+                "binding_collection_name": "boss_bars"
+            }
+        ]
+    },
+
+    "fade_up": {
+        "anim_type": "offset",
+        "easing": "out_expo",
+        "from": [0, 12],
+        "to": [0, -14],
+        "duration": 1
+    },
+
+    "fade_in": {
+        "anim_type": "alpha",
+        "duration": 1,
+        "easing": "linear",
+        "from": 0,
+        "to": 1
+    },
+
+    "item_name_text_root": {
+        "type": "panel",
+        "size": [ "100%cm", "100%cm" ],
+        "$show_interact_padding|default": false,
+        "$show_survival_padding|default": false,
+    
+        "$show_text_background|default": false,
+    
+        "$text_color|default": "$tool_tip_text",
+        "$text_binding|default": "#item_text",
+    
+        "anchor_from": "bottom_middle",
+        "anchor_to": "bottom_middle",
+        "offset": "@hud.fade_up",
+        "alpha": "@hud.fade_in",
+        "$wait_duration|default": 1,
+        "$destroy_id|default": "item_name_text",
+        "controls": [
+            {
+                "item_text_aligner": {
+                    "type": "stack_panel",
+                    "size": [ "100%cm", "100%c" ],
+                    "controls": [
+                        {
+                            "item_text_control": {
+                                "type": "panel",
+                                "size": [ 300, 16 ],
+                                "controls": [
+                                    {
+                                        "item_text_background": {
+                                            "ignored": "(not $show_text_background)",
+    
+                                            "type": "image",
+                                            "size": [ "100%sm + 12px", "100%sm + 5px" ],
+                                            "texture": "textures/ui/hud_tip_text_background",
+                                            "alpha": "@hud.anim_item_name_background_alpha_in"
+                                        }
+                                    },
+                                    {
+                                        "item_text_label": {
+                                            "type": "label",
+                                            "max_size": [ 200, 16 ],
+                                            "text_alignment": "center",
+                                            "layer": 31,
+                                            "color": "$text_color",
+                                            "text": "#text",
+                                            "alpha": "@hud.anim_item_name_text_alpha_in",
+                                            "enable_profanity_filter": false,
+                                            "bindings": [
+                                                {
+                                                    "binding_name": "$text_binding",
+                                                    "binding_name_override": "#text"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "interact_padding@common.empty_panel": {
+                                "visible": "$show_interact_padding",
+                                "size": [ "100%sm", 18 ],
+                                "bindings": [
+                                    {
+                                        "binding_name": "#interact_visible",
+                                        "binding_name_override": "#visible",
+                                        "binding_condition": "always"
+    
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "survival_buffer@common.empty_panel": {
+                                "visible": "$show_survival_padding",
+                                "size": [ "100%sm", 17 ],
+                                "bindings": [
+                                    {
+                                        "binding_name": "#show_survival_ui",
+                                        "binding_name_override": "#visible"
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}

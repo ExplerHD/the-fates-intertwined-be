@@ -1,0 +1,28 @@
+{
+	"pools": [
+		{
+			"rolls": 1,
+			"entries": [
+				{
+					"type": "item",
+					"name": "fec:windblade_claymore",
+					"functions": [
+						{
+							"function": "enchant_randomly",
+							"treasure": true
+						}
+					],
+					"pools": [
+						{
+							"conditions": [
+								{
+									"condition": "killed_by_player_or_pets"
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,156 @@
+{
+    "format_version": "1.20.20",
+    "minecraft:block": {
+        "description": {
+            "identifier": "fec:shadow_corruption",
+            "menu_category": {
+                "category": "nature"
+            }
+        },
+        "components": {
+            "minecraft:material_instances": {
+                "*": {
+                    "texture": "fec_shadow_grass_side",
+                    "render_method": "opaque"
+                },
+                "up": {
+                    "texture": "fec_shadow_grass_top",
+                    "render_method": "opaque"
+                },
+                "down": {
+                    "texture": "fec_shadow_grass_bottom",
+                    "render_method": "opaque"
+                }
+            },
+            "minecraft:on_interact": {
+                "event": "interacted"
+            },
+            "minecraft:queued_ticking": {
+                "looping": true,
+                "interval_range": [
+                    600,
+                    1200
+                ],
+                "on_tick": {
+                    "event": "block_scatter"
+                }
+            },
+            "minecraft:destructible_by_explosion": {
+                "explosion_resistance": 1.2
+            },
+            "minecraft:destructible_by_mining": {
+                "seconds_to_destroy": 1.2
+            }
+        },
+        "events": {
+            "interacted": {
+                "condition": "(query.get_equipped_item_name == 'wooden_shovel') || (query.get_equipped_item_name == 'stone_shovel') || (query.get_equipped_item_name == 'iron_shovel') || (query.get_equipped_item_name == 'golden_shovel') || (query.get_equipped_item_name == 'diamond_shovel') || (query.get_equipped_item_name == 'netherite_shovel')",
+                "set_block": {
+                    "block_type": "minecraft:grass_path"
+                }
+            },
+            "block_scatter": {
+                "randomize": [
+                    {
+                        "run_command": {
+                            "command": [
+                                "fill ~1~~~1~~ fec:shadow_corruption replace grass"
+                            ]
+                        }
+                    },
+                    {
+                        "run_command": {
+                            "command": [
+                                "fill ~-1~~~-1~~ fec:shadow_corruption replace grass"
+                            ]
+                        }
+                    },
+                    {
+                        "run_command": {
+                            "command": [
+                                "fill ~~~1~~~1 fec:shadow_corruption replace grass"
+                            ]
+                        }
+                    },
+                    {
+                        "run_command": {
+                            "command": [
+                                "fill ~~~-1~~~-1 fec:shadow_corruption replace grass"
+                            ]
+                        }
+                    },
+                    {
+                        "run_command": {
+                            "command": [
+                                "fill ~1~~1~1~~1 fec:shadow_corruption replace grass"
+                            ]
+                        }
+                    },
+                    {
+                        "run_command": {
+                            "command": [
+                                "fill ~-1~~1~-1~~1 fec:shadow_corruption replace grass"
+                            ]
+                        }
+                    },
+                    {
+                        "run_command": {
+                            "command": [
+                                "fill ~-1~~1~-1~~1 fec:shadow_corruption replace grass"
+                            ]
+                        }
+                    },
+                    {
+                        "run_command": {
+                            "command": [
+                                "fill ~1~~-1~1~~-1 fec:shadow_corruption replace grass"
+                            ]
+                        }
+                    },
+                    {
+                        "run_command": {
+                            "command": [
+                                "fill ~1~~-1~1~~-1 fec:shadow_corruption replace grass"
+                            ]
+                        }
+                    },
+                    {
+                        "run_command": {
+                            "command": [
+                                "fill ~-1~~-1~-1~~-1 fec:shadow_corruption replace grass"
+                            ]
+                        }
+                    },
+                    {
+                        "run_command": {
+                            "command": [
+                                "fill ~-1~~1~-1~~1 fec:shadow_corruption replace grass"
+                            ]
+                        }
+                    },
+                    {
+                        "run_command": {
+                            "command": [
+                                "fill ~-1~~-1~-1~~-1 fec:shadow_corruption replace grass"
+                            ]
+                        }
+                    },
+                    {
+                        "run_command": {
+                            "command": [
+                                "fill ~~1~~~1~ fec:shadow_corruption replace grass"
+                            ]
+                        }
+                    },
+                    {
+                        "run_command": {
+                            "command": [
+                                "fill ~~-1~~~-1~ fec:shadow_corruption replace grass"
+                            ]
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}
