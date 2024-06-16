@@ -371,7 +371,7 @@
 					"command": [
 						"music play music.duel.scourge_of_the_universe 1 1 loop",
 						"title @a[r=64] title Shadowplague Guardian",
-						"title @a[r=64] title The Guardian of Shadow Plague",
+						"title @a[r=64] subtitle The Guardian of Shadow Plague",
 						"gamemode 2 @a[r=80]"
 					]
 				}
@@ -405,8 +405,9 @@
 						"queue_command": {
 							"command": [
 								"music stop 3",
-								"tellraw @a[r=64] {\"rawtext\":[{\"text\":\"§cThe Evil presence is now corrupting the world\"}]}",
+								"tellraw @a[r=64] {\"rawtext\":[{\"text\":\"§cThe Evil presence is now corrupting the world with Shadow Power\"}]}",
 								"clear @p fec:shadow_heart 0 1",
+								"fill ~-5~-5~-5~5~5~5 fec:shadow_corruption replace grass_block",
 								"gamemode d @a[r=64,m=2]"
 							]
 						}

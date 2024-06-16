@@ -45,22 +45,21 @@
         "anchor_from": "top_left",
         "anchor_to": "top_left",
         "controls": [
-          
-          {
-            "scrolling_panel@common.scrolling_panel": {
-              "anchor_to": "top_left",
-              "anchor_from": "top_left",
-              "$show_background": false,
-              "size": [ "100%", "100%" ],
-              "$scrolling_content": "server_form.class_form_panel",
-              "$scroll_size": [ 5, "100% - 4px" ],
-              "$scrolling_pane_size": [ "100% - 4px", "100% - 2px" ],
-              "$scrolling_pane_offset": [ 2, 0 ],
-              "$scroll_bar_right_padding_size": [ 0, 0 ]
+            {
+                "scrolling_panel@common.scrolling_panel": {
+                    "anchor_to": "top_left",
+                    "anchor_from": "top_left",
+                    "$show_background": false,
+                    "size": [ "100%", "100%" ],
+                    "$scrolling_content": "server_form.class_form_panel",
+                    "$scroll_size": [ 5, "100% - 4px" ],
+                    "$scrolling_pane_size": [ "100% - 4px", "100% - 2px" ],
+                    "$scrolling_pane_offset": [ 2, 0 ],
+                    "$scroll_bar_right_padding_size": [ 0, 0 ]
+                }
             }
-          }
         ]
-      },
+    },
 
     "class_form_panel": {
         "type": "panel",

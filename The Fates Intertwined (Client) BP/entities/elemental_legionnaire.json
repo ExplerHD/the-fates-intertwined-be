@@ -309,15 +309,17 @@
 						"right_attack"
 					]
 				},
-				"run_command": {
+				"queue_command": {
 					"command": [
 						"music play music.boss.unfiltered_calamity 1 1 loop",
-						"gamemode 2 @a[r=64,m=d]"
+						"gamemode 2 @a[r=64,m=d]",
+						"title @a[r=64] title Elemental Legionnaire",
+						"title @a[r=64] subtitle Master of Elemental"
 					]
 				}
 			},
 			"music_stop": {
-				"run_command": {
+				"queue_command": {
 					"command": [
 						"music stop 3",
 						"tellraw @a[r=64] {\"rawtext\":[{\"text\":\"<Elemental Legionnaire> Marvelous! you defeated me, take this weapons. I'm not dead yet, see you next time\"}]}",
@@ -335,7 +337,7 @@
 							"operator": ">=",
 							"value": 1
 						},
-						"run_command": {
+						"queue_command": {
 							"command": [
 								"music stop 3",
 								"kill @s",
@@ -349,13 +351,13 @@
 						"filters": {
 							"test": "actor_health",
 							"subject": "self",
-							"operator": "==",
-							"value": 0
+							"operator": "<",
+							"value": 1
 						},
-						"run_command": {
+						"queue_command": {
 							"command": [
 								"music stop 3",
-								"tellraw @a[r=64,m=2] {\"rawtext\":[{\"text\":\"<Elemental Legionnaire> Marvelous! you defeated me, take this weapons. I'm not dead yet, see you next time\"}]}",
+								"tellraw @a[r=64,m=2] {\"rawtext\":[{\"text\":\"<Elemental Legionnaire> Marvelous! you defeated me, take this weapon, I'm not dead yet, see you next time\"}]}",
 								"clear @p fec:legionnaire_medalion 0 1",
 								"gamemode d @a[r=64,m=2]"
 							]
@@ -377,7 +379,7 @@
 						"right_attack"
 					]
 				},
-				"run_command": {
+				"queue_command": {
 					"command": [
 						"execute at @a[r=64] run summon xp_bottle ~~~",
 						"execute at @a[r=64] run summon xp_bottle ~~~",
@@ -398,7 +400,7 @@
 						"pattern_randomizer"
 					]
 				},
-				"run_command": {
+				"queue_command": {
 					"command": [
 						"particle fec:nuclear_explosion_wipe ~~~",
 						"damage @e[r=64,type=!fec:elemental_legionnaire] 256 entity_explosion entity @s"
@@ -411,7 +413,7 @@
 						"pattern_randomizer"
 					]
 				},
-				"run_command": {
+				"queue_command": {
 					"command": [
 						"summon lightning_bolt ~2~~",
 						"summon lightning_bolt ~-2~~",
@@ -446,12 +448,14 @@
 					},
 					{
 						"weight": 25,
-						"run_command": {
+						"queue_command": {
 							"command": [
 								"playanimation @s animation.elemental_legionnaire.right_attack",
 								"effect @s resistance 3 255",
 								"effect @s slowness 3 255 true",
-								"particle fec:charge_up ~~2~"
+								"particle fec:charge_up ~~2~",
+								"title @a[r=64] title ! ELEMENTAL WIND GUST !",
+								"titleraw @a[r=64] subtitle {\"rawtext\":[{\"text\":\"! USE SHIELD OR UPDRAFT TO AVOID THE ATTACKS !\n! LETHAL ATTACK !\"}]}"
 							]
 						},
 						"add": {
@@ -462,9 +466,11 @@
 					},
 					{
 						"weight": 25,
-						"run_command": {
+						"queue_command": {
 							"command": [
-								"playanimation @s animation.elemental_legionnaire.down_attack"
+								"playanimation @s animation.elemental_legionnaire.down_attack",
+								"title @a[r=64] title ! LIGHTNING STRIKE IS COMING !",
+								"titleraw @a[r=64] subtitle {\"rawtext\":[{\"text\":\"! DODGE TO AVOID THIS ATTACK !\"}]}"
 							]
 						},
 						"add": {

@@ -305,7 +305,9 @@
 				"queue_command": {
 					"command": [
 						"music play music.boss.the_heaven_sent_abomination 1 1 loop",
-						"gamemode 2 @a[r=64,m=d]"
+						"gamemode 2 @a[r=64,m=d]",
+						"title @a[r=64] title Eidolon Remnant",
+						"title @a[r=64] subtitle The Water Blooms"
 					]
 				},
 				"add": {
@@ -363,8 +365,8 @@
 						"filters": {
 							"test": "actor_health",
 							"subject": "self",
-							"operator": "==",
-							"value": 0
+							"operator": "<",
+							"value": 1
 						},
 						"queue_command": {
 							"command": [
@@ -417,7 +419,9 @@
 				},
 				"queue_command": {
 					"command": [
-						"playanimation @s animation.water_eidolon.summon_water_core"
+						"playanimation @s animation.water_eidolon.summon_water_core",
+						"title @a[r=64] title Phase 2",
+						"title @a[r=64] subtitle ! WATCH OUT TO THE PILLAR, LETHAL BORDER !"
 					]
 				}
 			},
@@ -435,7 +439,9 @@
 				},
 				"queue_command": {
 					"command": [
-						"execute at @e[type=fec:water_pillar] run summon ender_crystal ~~~ ~ ~ minecraft:crystal_explode"
+						"execute at @e[type=fec:water_pillar] run summon ender_crystal ~~~ ~ ~ minecraft:crystal_explode",
+						"title @a[r=64] title Phase 3",
+						"title @a[r=64] subtitle ! WATCH OUT FOR THE EXPLOSION !"
 					]
 				}
 			},
@@ -501,7 +507,9 @@
 						"queue_command": {
 							"command": [
 								"playanimation @s animation.water_eidolon.summon_water_core",
-								"summon fec:water_core ^^^3"
+								"summon fec:water_core ^^^3",
+								"title @a[r=64] title ! WARNING !",
+								"title @a[r=64] subtitle ! DESTROY THE CORE TO AVOID LETHAL EXPLOSION !"
 							]
 						}
 					}
@@ -573,7 +581,9 @@
 						"queue_command": {
 							"command": [
 								"playanimation @s animation.water_eidolon.summon_water_core",
-								"summon fec:water_core ^^^3"
+								"summon fec:water_core ^^^3",
+								"title @a[r=64] title ! WARNING !",
+								"title @a[r=64] subtitle ! DESTROY THE CORE TO AVOID LETHAL EXPLOSION !"
 							]
 						}
 					},
@@ -592,7 +602,9 @@
 						"queue_command": {
 							"command": [
 								"playanimation @s animation.water_eidolon.summon_water_core",
-								"event entity @e[type=fec:water_pillar] despawn"
+								"event entity @e[type=fec:water_pillar] despawn",
+								"title @a[r=64] title ! BE CAREFUL !",
+								"title @a[r=64] subtitle ! THE BORDER IS BEING REPOSITIONED !"
 							]
 						}
 					}
@@ -664,7 +676,9 @@
 						"queue_command": {
 							"command": [
 								"playanimation @s animation.water_eidolon.summon_water_core",
-								"summon fec:water_core ^^^3"
+								"summon fec:water_core ^^^3",
+								"title @a[r=64] title ! WARNING !",
+								"title @a[r=64] subtitle ! DESTROY THE CORE TO AVOID LETHAL EXPLOSION !"
 							]
 						}
 					},
@@ -683,7 +697,9 @@
 						"queue_command": {
 							"command": [
 								"playanimation @s animation.water_eidolon.summon_water_core",
-								"event entity @e[type=fec:water_pillar] despawn"
+								"event entity @e[type=fec:water_pillar] despawn",
+								"title @a[r=64] title ! BE CAREFUL !",
+								"title @a[r=64] subtitle ! THE BORDER IS BEING REPOSITIONED !"
 							]
 						}
 					},

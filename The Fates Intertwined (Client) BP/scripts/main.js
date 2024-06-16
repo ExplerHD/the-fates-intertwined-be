@@ -26,19 +26,24 @@ function getScore(target, objective) {
     }
 }
 
-// Detects entity being hurt, or you hit an entity
-world.afterEvents.entityHurt.subscribe((hurtEvent) => {
-    const source = hurtEvent.damageSource.damagingEntity;
-    const damagedEntity = hurtEvent.hurtEntity;
+// Loop System (delay 1 second)
+system.runInterval(() => {
+    world.getDimension('overworld').runCommand('effect @a[tag=speed_ranger] speed 1 1')
+    world.getDimension('overworld').runCommand('titleraw @a[hasitem={item=fec:wind_essence,location=slot.weapon.mainhand}] actionbar {"rawtext":[{"text":"Cooldown : §e"},{"score":{"name":"*","objective":"wind_essence"}},{"text":" Ticks"}]}')
+    world.getDimension('overworld').runCommand('titleraw @a[hasitem={item=feather,location=slot.weapon.mainhand},tag=speed_ranger] actionbar {"rawtext":[{"text":"Cooldown : §e"},{"score":{"name":"*","objective":"dash_cooldown"}},{"text":"s"}]}')
+}, 1)
 
-    if (!source) return;
+// Detects entity being hurt, or you hit an entity
+world.afterEvents.entityHitEntity.subscribe((hurtEvent) => {
+    const source = hurtEvent.damagingEntity;
+    const damagedEntity = hurtEvent.hitEntity;
 
     if (source.hasTag('healer') && getScore(source, 'atk_cooldown') == 0) {
         const health = source.getComponent("health");
         const currentHealth = health.currentValue;
-        health.setCurrentValue(currentHealth + 1)
-        source.runCommandAsync(`playsound random.orb ${source.name}`)
-        setScore(source, 'atk_cooldown', 2)
+        health.setCurrentValue(currentHealth + 1);
+        source.runCommandAsync(`playsound random.orb ${source.name}`);
+        setScore(source, 'atk_cooldown', 1);
     }
 
     if (source.hasTag('initiator')){
@@ -48,8 +53,12 @@ world.afterEvents.entityHurt.subscribe((hurtEvent) => {
                 damagingEntity: source,
                 damagingProjectile: source
             }
+            const strengthMultiplier = {
+                amplifier: 1,
+                showParticles: false
+            }
             damagedEntity.applyDamage(10, initiateDmg)
-            source.addEffect('strength', 100)
+            source.addEffect('strength', 100, strengthMultiplier)
             damagedEntity.dimension.spawnParticle('minecraft:critical_hit_emitter', damagedEntity.location)
             source.runCommandAsync('playsound mob.zombie.woodbreak @p[r=12]')
         }
@@ -72,41 +81,68 @@ world.afterEvents.entityHurt.subscribe((hurtEvent) => {
 world.afterEvents.itemUse.subscribe((starting) => {
     const player = starting.source
 
-    if(starting.itemStack.typeId === 'minecraft:feather' && getScore(player, 'dash_cooldown') == 0){
-        player.applyKnockback(player.getViewDirection().x, player.getViewDirection().z, 3, 0.4);
-        player.runCommandAsync(`playsound mob.enderdragon.flap ${player.name}`);
-        player.runCommandAsync(`particle fec:dash_fx ~~~`);
-        return addScore(player, 'dash_cooldown', 14);
-    }
-
-    if(starting.itemStack.typeId === 'fec:wind_essence' && getScore(player, 'wind_essence') == 0){
-        if(player.isSneaking == true){
-            const IframeOptions = {
-                amplifier: 255,
-                showParticles: false
+    if(player.hasTag("speed_ranger") && starting.itemStack.typeId === 'minecraft:feather'){
+        if(getScore(player, 'dash_cooldown') == 0) {
+            if(player.isSneaking == true){
+                player.applyKnockback(player.getViewDirection().x, player.getViewDirection().z, -3.5, 0.4);
+                player.runCommandAsync(`playsound mob.enderdragon.flap "${player.name}"`);  
+                player.runCommandAsync(`particle fec:dash_fx ~~~`);
+                return addScore(player, 'dash_cooldown', 14);
+            } else {
+                player.applyKnockback(player.getViewDirection().x, player.getViewDirection().z, 3, 0.4);
+                player.runCommandAsync(`playsound mob.enderdragon.flap "${player.name}"`);  
+                player.runCommandAsync(`particle fec:dash_fx ~~~`);
+                return addScore(player, 'dash_cooldown', 14);
             }
-            player.applyKnockback(player.getViewDirection().x, player.getViewDirection().z, 0.4, 1.1);
-            player.runCommandAsync(`playsound mob.enderdragon.flap ${player.name}`);
-            player.runCommandAsync(`particle fec:dash_fx ~~~`);
-            player.runCommandAsync(`particle fec:dash_fx ~~1~`);
-            player.runCommandAsync(`particle fec:dash_fx ~~2~`);
-            player.runCommandAsync(`particle fec:dash_fx ~~3~`);
-            player.addEffect('resistance', 45, IframeOptions);
-            addScore(player, 'wind_essence', 10);
         } else {
-            player.applyKnockback(player.getViewDirection().x, player.getViewDirection().z, 3.1, 0.4);
-            player.runCommandAsync(`playsound mob.enderdragon.flap ${player.name}`);
-            player.runCommandAsync(`particle fec:windblade_claymore_attack_3 ~~~`);
-            addScore(player, 'wind_essence', 20);
+             const soundSettings = {
+                location: player.location,
+                volume: 1,
+                pitch: 1
+            }
+            player.runCommandAsync(`tellraw "${player.name}" {"rawtext":[{"text":"Wait §c"},{"score":{"name":"*","objective":"dash_cooldown"}},{"text":" §rSeconds"}]}`)
+            player.playSound("note.bass", soundSettings)
         }
     }
 
-    if(!player.hasTag('class_selected') && starting.itemStack.typeId === 'minecraft:compass') classForm(player);
+    if(starting.itemStack.typeId === 'fec:wind_essence' && getScore(player, 'wind_essence') == 0){
+        if(getScore(player, 'wind_essence') == 0) {
+            if(player.isSneaking == true){
+                const IframeOptions = {
+                    amplifier: 255,
+                    showParticles: false
+                }
+                player.applyKnockback(player.getViewDirection().x, player.getViewDirection().z, 0.4, 1.1);
+                player.runCommandAsync(`playsound mob.enderdragon.flap "${player.name}"`);
+                player.runCommandAsync(`particle fec:dash_fx ~~~`);
+                player.runCommandAsync(`particle fec:dash_fx ~~1~`);
+                player.runCommandAsync(`particle fec:dash_fx ~~2~`);
+                player.runCommandAsync(`particle fec:dash_fx ~~3~`);
+                player.addEffect('resistance', 45, IframeOptions);
+                addScore(player, 'wind_essence', 10);
+            } else {
+                player.applyKnockback(player.getViewDirection().x, player.getViewDirection().z, 3.1, 0.4);
+                player.runCommandAsync(`playsound mob.enderdragon.flap "${player.name}"`);
+                player.runCommandAsync(`particle fec:windblade_claymore_attack_3 ~~~`);
+                addScore(player, 'wind_essence', 20);
+            }
+        } else {
+            const soundSettings = {
+                location: player.location,
+                volume: 1,
+                pitch: 1
+            }
+            player.runCommandAsync(`tellraw "${player.name}" {"rawtext":[{"text":"Wait §c"},{"score":{"name":"*","objective":"wind_essence"}},{"text":" §rTicks"}]}`)
+            player.playSound("note.bass", soundSettings)
+        }
+    }
+
+    if(!player.hasTag("class_selected") && starting.itemStack.typeId === 'minecraft:compass') classForm(player);
 
     function classForm(){
         let classForms = new ActionFormData;
         classForms.title("Select Your Class");
-        classForms.body(`${player.nameTag}, Select your class here to start your journey, every class have different perks to differentiate starting gear`);
+        classForms.body(`${player.name}, Select your class here to start your journey, every class have different perks to differentiate starting gear`);
         classForms.button("The Speed Ranger", "textures/items/medals/winterbloom_medal");
         classForms.button("The Healer Mage", "textures/items/medals/loving_sakura_medal");
         classForms.button("The Melee Initiator", "textures/items/medals/lightning_phoenix_medal");
@@ -114,7 +150,7 @@ world.afterEvents.itemUse.subscribe((starting) => {
     
         classForms.show(player).then(r => {
             if (r.canceled || r.selection === undefined ){
-                player.sendMessage(`${player.nameTag}, you can choose class next time, think it first before you choose`)
+                player.sendMessage(`${player.name}, you can choose class next time, think it first before you choose`)
             }
             if (r.selection == 0) speedRanger(player);
             if (r.selection == 1) healerMage(player);
@@ -134,13 +170,13 @@ world.afterEvents.itemUse.subscribe((starting) => {
             if (r.canceled || r.selection === undefined || r.selection === 0 ) classForm(player);
             if (r.selection === 1) {
                 player.sendMessage(`Class Selected, You cannot change change class again until you have a Nether Star`);
-                player.runCommandAsync(`give ${player.name} fec:winterbloom_medal`);
-                player.runCommandAsync(`give ${player.name} bow`);
-                player.runCommandAsync(`give ${player.name} arrow 32`);
-                player.runCommandAsync(`give ${player.name} cooked_beef 32`);
+                player.runCommandAsync(`give "${player.name}" fec:winterbloom_medal`);
+                player.runCommandAsync(`give "${player.name}" bow`);
+                player.runCommandAsync(`give "${player.name}" arrow 32`);
+                player.runCommandAsync(`give "${player.name}" cooked_beef 32`);
                 player.addTag('class_selected');
                 player.addTag('speed_ranger');
-                player.runCommandAsync(`clear ${player.name} compass`);
+                player.runCommandAsync(`clear "${player.name}" compass`);
             }
         })
     }
@@ -148,7 +184,7 @@ world.afterEvents.itemUse.subscribe((starting) => {
     function healerMage(){
         let HealerMage = new MessageFormData;
         HealerMage.title("Confirmation");
-        HealerMage.body("Are you sure you want to select Speed Ranger?\nThis class have :\n Perks : Improved Healing (+1 HP Every hit)\n\n This Class have :\n  1 Wooden Sword\n  1 Leather Armor Set\n  32 Bread\n  1 Exclusive Medalion (Loving Sakura)");
+        HealerMage.body("Are you sure you want to select Speed Ranger?\nThis class have :\n Perks : Improved Healing (+1 HP Every hit, Cooldown 1 Second)\n\n This Class have :\n  1 Wooden Sword\n  1 Leather Armor Set\n  32 Bread\n  1 Exclusive Medalion (Loving Sakura)");
         HealerMage.button1("No, Let me think again");
         HealerMage.button2("Yes, Sure");
     
@@ -156,16 +192,16 @@ world.afterEvents.itemUse.subscribe((starting) => {
             if (r.canceled || r.selection === undefined || r.selection === 0 ) classForm(player);
             if (r.selection === 1) {
                 player.sendMessage(`Class Selected, You cannot change change class again until you have a Nether Star`);
-                player.runCommandAsync(`give ${player.name} fec:loving_sakura_medal`);
-                player.runCommandAsync(`give ${player.name} wooden_sword`);
-                player.runCommandAsync(`give ${player.name} bread 32`);
-                player.runCommandAsync(`give ${player.name} leather_helmet 1`);
-                player.runCommandAsync(`give ${player.name} leather_chestplate 1`);
-                player.runCommandAsync(`give ${player.name} leather_leggings 1`);
-                player.runCommandAsync(`give ${player.name} leather_boots 1`);
+                player.runCommandAsync(`give "${player.name}" fec:loving_sakura_medal`);
+                player.runCommandAsync(`give "${player.name}" wooden_sword`);
+                player.runCommandAsync(`give "${player.name}" bread 32`);
+                player.runCommandAsync(`give "${player.name}" leather_helmet 1`);
+                player.runCommandAsync(`give "${player.name}" leather_chestplate 1`);
+                player.runCommandAsync(`give "${player.name}" leather_leggings 1`);
+                player.runCommandAsync(`give "${player.name}" leather_boots 1`);
                 player.addTag('class_selected');
                 player.addTag('healer');
-                player.runCommandAsync(`clear ${player.name} compass`);
+                player.runCommandAsync(`clear "${player.name}" compass`);
             }
         })
     }
@@ -173,23 +209,23 @@ world.afterEvents.itemUse.subscribe((starting) => {
     function meleeInitiator(){
         let meleeInitiator = new MessageFormData;
         meleeInitiator.title("Confirmation");
-        meleeInitiator.body("Are you sure you want to select Speed Ranger?\nThis class have :\n Perks : Initiator Strike (x3 Damage when enters combat)\n\n This Class have :\n  1 Stone Sword\n  1 Chainmail with Leather Armor Set\n  16 Steak\n  1 Exclusive Medalion (Lightning Tajador)");
+        meleeInitiator.body("Are you sure you want to select Speed Ranger?\nThis class have :\n Perks : Initiator Strike (Increased damage when entering combat)\n\n This Class have :\n  1 Stone Sword\n  1 Chainmail with Leather Armor Set\n  16 Steak\n  1 Exclusive Medalion (Lightning Tajador)");
         meleeInitiator.button1("No, Let me think again");
         meleeInitiator.button2("Yes, Sure");
         meleeInitiator.show(player).then(r => {
             if (r.canceled || r.selection === undefined || r.selection === 0 ) classForm(player);
             if (r.selection === 1) {
                 player.sendMessage(`Class Selected, You cannot change change class again until you have a Nether Star`);
-                player.runCommandAsync(`give ${player.name} fec:murasama_medal`)
-                player.runCommandAsync(`give ${player.name} wooden_sword`);
-                player.runCommandAsync(`give ${player.name} bread 32`);
-                player.runCommandAsync(`give ${player.name} leather_helmet 1`);
-                player.runCommandAsync(`give ${player.name} leather_chestplate 1`);
-                player.runCommandAsync(`give ${player.name} leather_leggings 1`);
-                player.runCommandAsync(`give ${player.name} leather_boots 1`);
+                player.runCommandAsync(`give "${player.name}" fec:murasama_medal`)
+                player.runCommandAsync(`give "${player.name}" stone_sword`);
+                player.runCommandAsync(`give "${player.name}" bread 16`);
+                player.runCommandAsync(`give "${player.name}" leather_helmet 1`);
+                player.runCommandAsync(`give "${player.name}" chainmail_chestplate 1`);
+                player.runCommandAsync(`give "${player.name}" leather_leggings 1`);
+                player.runCommandAsync(`give "${player.name}" leather_boots 1`);
                 player.addTag('class_selected');
                 player.addTag('initiator');
-                player.runCommandAsync(`clear ${player.name} compass`);
+                player.runCommandAsync(`clear "${player.name}" compass`);
             }
         })
     }
@@ -197,23 +233,23 @@ world.afterEvents.itemUse.subscribe((starting) => {
     function heavyPenetrator(){
         let HeavyPenetrator = new MessageFormData;
         HeavyPenetrator.title("Confirmation");
-        HeavyPenetrator.body("Are you sure you want to select Speed Ranger?\nThis class have :\n Perks : Brute Windforce (Massive knockbacks with fists only, and improves fist attack)]\n\n This Class have :\n  1 Wooden Sword\n 1 Chainmail Armor Set\n  16 Steak\n  1 Exclusive Medalion (Land of Peace)");
+        HeavyPenetrator.body("Are you sure you want to select Speed Ranger?\nThis class have :\n Perks : Brute Windforce (Massive knockbacks and Armor Penetrating Damage with cooldown for 5 Seconds)\n\n This Class have :\n  1 Wooden Sword\n 1 Chainmail Armor Set\n  16 Steak\n  1 Exclusive Medalion (Land of Peace)");
         HeavyPenetrator.button1("No, Let me think again");
         HeavyPenetrator.button2("Yes, Sure");
         HeavyPenetrator.show(player).then(r => {
             if (r.canceled || r.selection === undefined || r.selection === 0 ) classForm(player);
             if (r.selection === 1) {
                 player.sendMessage(`Class Selected, You cannot change change class again until you have a Nether Star`);
-                player.runCommandAsync(`give ${player.name} fec:land_of_peace_medal`)
-                player.runCommandAsync(`give ${player.name} wooden_sword`);
-                player.runCommandAsync(`give ${player.name} bread 16`);
-                player.runCommandAsync(`give ${player.name} leather_helmet 1`);
-                player.runCommandAsync(`give ${player.name} leather_chestplate 1`);
-                player.runCommandAsync(`give ${player.name} leather_leggings 1`);
-                player.runCommandAsync(`give ${player.name} leather_boots 1`);
+                player.runCommandAsync(`give "${player.name}" fec:land_of_peace_medal`)
+                player.runCommandAsync(`give "${player.name}" wooden_sword`);
+                player.runCommandAsync(`give "${player.name}" bread 16`);
+                player.runCommandAsync(`give "${player.name}" leather_helmet 1`);
+                player.runCommandAsync(`give "${player.name}" leather_chestplate 1`);
+                player.runCommandAsync(`give "${player.name}" leather_leggings 1`);
+                player.runCommandAsync(`give "${player.name}" leather_boots 1`);
                 player.addTag('class_selected');
                 player.addTag('penetrator');
-                player.runCommandAsync(`clear ${player.name} compass`);
+                player.runCommandAsync(`clear "${player.name}" compass`);
             }
         })
     }

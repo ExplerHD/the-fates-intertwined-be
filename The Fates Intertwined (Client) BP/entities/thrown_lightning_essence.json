@@ -55,7 +55,7 @@
 				"run_command": {
 					"command": [
 						"summon lightning_bolt",
-						"damage @e[r=7] 4 all"
+						"damage @e[r=7,rm=0.1] 4 lightning"
 					]
 				}
 			}

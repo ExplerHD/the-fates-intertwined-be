@@ -16,13 +16,13 @@
 				"distribution": "gaussian",
 				"extent": [
 					0,
-					6
+					16
 				]
 			},
 			"y": {
 				"distribution": "gaussian",
 				"extent": [
-					63,
+					64,
 					120
 				]
 			},
@@ -30,7 +30,7 @@
 				"distribution": "gaussian",
 				"extent": [
 					0,
-					6
+					16
 				]
 			}
 		}

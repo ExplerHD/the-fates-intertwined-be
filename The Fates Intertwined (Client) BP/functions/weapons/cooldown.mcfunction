@@ -41,7 +41,6 @@ scoreboard players remove @a[scores={cdtick=20}] rage_of_sakura_c3 1
 scoreboard players remove @a[scores={cdtick=20}] murasama_calamity_c1 1
 scoreboard players remove @a[scores={cdtick=20}] murasama_calamity_c2 1
 scoreboard players remove @a[scores={cdtick=20}] murasama_calamity_c3 1
-scoreboard players remove @a[scores={cdtick=20}] murasama_calamity_c4 1
 scoreboard players remove @a[scores={cdtick=20}] blade_of_the_end_c1 1
 scoreboard players remove @a[scores={cdtick=20}] blade_of_the_end_c2 1
 scoreboard players remove @a[scores={cdtick=20}] blade_of_the_end_c3 1
@@ -72,7 +71,6 @@ scoreboard players set @a[scores={rage_of_sakura_c3=..0}] rage_of_sakura_c3 0
 scoreboard players set @a[scores={murasama_calamity_c1=..0}] murasama_calamity_c1 0
 scoreboard players set @a[scores={murasama_calamity_c2=..0}] murasama_calamity_c2 0
 scoreboard players set @a[scores={murasama_calamity_c3=..0}] murasama_calamity_c3 0
-scoreboard players set @a[scores={murasama_calamity_c4=..0}] murasama_calamity_c4 0
 scoreboard players set @a[scores={blade_of_the_end_c1=..0}] blade_of_the_end_c1 0
 scoreboard players set @a[scores={blade_of_the_end_c2=..0}] blade_of_the_end_c2 0
 scoreboard players set @a[scores={blade_of_the_end_c3=..0}] blade_of_the_end_c3 0
@@ -96,7 +94,8 @@ scoreboard players set @a[scores={stars_and_crescent_c2=..0}] stars_and_crescent
 scoreboard players set @a[scores={stars_and_crescent_c3=..0}] stars_and_crescent_c3 0
 titleraw @a[hasitem={item=fec:winterbloom_sword,location=slot.weapon.mainhand}] actionbar {"rawtext":[{"text":"§bC1 : §e"},{"score":{"name":"*","objective":"winterbloom_sword_c1"}},{"text":"s, §bC2 : §e"},{"score":{"name":"*","objective":"winterbloom_sword_c2"}},{"text":"s, §bC3 : §e"},{"score":{"name":"*","objective":"winterbloom_sword_c3"}},{"text":"s"}]}
 titleraw @a[hasitem={item=fec:rage_of_sakura,location=slot.weapon.mainhand}] actionbar {"rawtext":[{"text":"§bC1 : §e"},{"score":{"name":"*","objective":"rage_of_sakura_c1"}},{"text":"s, §bC2 : §e"},{"score":{"name":"*","objective":"rage_of_sakura_c2"}},{"text":"s, §bC3 : §e"},{"score":{"name":"*","objective":"rage_of_sakura_c3"}},{"text":"s"}]}
-titleraw @a[hasitem={item=fec:murasama_calamity,location=slot.weapon.mainhand}] actionbar {"rawtext":[{"text":"§bC1 : §e"},{"score":{"name":"*","objective":"murasama_calamity_c1"}},{"text":"s, §bC2 : §e"},{"score":{"name":"*","objective":"murasama_calamity_c2"}},{"text":"s, §bC3 : §e"},{"score":{"name":"*","objective":"murasama_calamity_c3"}},{"text":"s, §bC4 : §e"},{"score":{"name":"*","objective":"murasama_calamity_c4"}},{"text":"s §cVoltra Charge §f"},{"score":{"name":"*","objective":"voltra_charge"}},{"text":"/100"}]}
+titleraw @a[hasitem={item=fec:murasama_calamity,location=slot.weapon.mainhand},scores={murasama_calamity_c4=..1}] actionbar {"rawtext":[{"text":"§bC1 : §e"},{"score":{"name":"*","objective":"murasama_calamity_c1"}},{"text":"s, §bC2 : §e"},{"score":{"name":"*","objective":"murasama_calamity_c2"}},{"text":"s, §bC3 : §e"},{"score":{"name":"*","objective":"murasama_calamity_c3"}},{"text":"s, §bC4 : §e"},{"score":{"name":"*","objective":"murasama_calamity_c4"}},{"text":"/2 Charge §cVoltra Charge §f"},{"score":{"name":"*","objective":"voltra_charge"}},{"text":"/100"}]}
+titleraw @a[hasitem={item=fec:murasama_calamity,location=slot.weapon.mainhand},scores={murasama_calamity_c4=2..}] actionbar {"rawtext":[{"text":"§bC1 : §e"},{"score":{"name":"*","objective":"murasama_calamity_c1"}},{"text":"s, §bC2 : §e"},{"score":{"name":"*","objective":"murasama_calamity_c2"}},{"text":"s, §bC3 : §e"},{"score":{"name":"*","objective":"murasama_calamity_c3"}},{"text":"s, §bC4 : §eREADY! §cVoltra Charge §f"},{"score":{"name":"*","objective":"voltra_charge"}},{"text":"/100"}]}
 titleraw @a[hasitem={item=fec:windblade_claymore,location=slot.weapon.mainhand}] actionbar {"rawtext":[{"text":"§bC1 : §e"},{"score":{"name":"*","objective":"windblade_claymore_c1"}},{"text":"s, §bC2 : §e"},{"score":{"name":"*","objective":"windblade_claymore_c2"}},{"text":"s, §bC3 : §e"},{"score":{"name":"*","objective":"windblade_claymore_c3"}},{"text":"s"}]}
 titleraw @a[hasitem={item=fec:blade_of_the_end,location=slot.weapon.mainhand}] actionbar {"rawtext":[{"text":"§bC1 : §e"},{"score":{"name":"*","objective":"blade_of_the_end_c1"}},{"text":"s, §bC2 : §e"},{"score":{"name":"*","objective":"blade_of_the_end_c2"}},{"text":"s, §bC3 : §e"},{"score":{"name":"*","objective":"blade_of_the_end_c3"}},{"text":"s, §bC4 : §e"},{"score":{"name":"*","objective":"blade_of_the_end_c4"}},{"text":"s"}]}
 titleraw @a[hasitem={item=fec:spear_of_heart,location=slot.weapon.mainhand}] actionbar {"rawtext":[{"text":"§bC1 : §e"},{"score":{"name":"*","objective":"spear_of_heart_c1"}},{"text":"s, §bC2 : §e"},{"score":{"name":"*","objective":"spear_of_heart_c2"}},{"text":"s, §bC3 : §e"},{"score":{"name":"*","objective":"spear_of_heart_c3"}},{"text":"s"}]}

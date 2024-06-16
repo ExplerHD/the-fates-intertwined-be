@@ -125,7 +125,7 @@
 						"/effect @s regeneration 2 1 true",
 						"/tellraw @a[r=64] {\"rawtext\":[{\"selector\":\"@s\"},{\"text\":\" used their ability §dLee-Enfield : Break\"}]}",
 						"/playsound random.break @a[r=32]",
-						"/scoreboard players set @s winterbloom_sword_c1 30"
+						"/scoreboard players set @s winterbloom_sword_c1 40"
 					],
 					"transitions": [
 						{

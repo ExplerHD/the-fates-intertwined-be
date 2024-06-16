@@ -15,7 +15,7 @@
 			"minecraft:can_destroy_in_creative": false,
 			"minecraft:damage": 9,
 			"minecraft:display_name": {
-				"value": "§6Winterbloom Weeping Keris Sword Style\n§7A sword with two style, Keris and Sword fused into one and makes the truly legendary one\n§2Right-click / Tap and Hold to cast the selected skill\nSneak + Left Click / tap to change selected skill"
+				"value": "§6Winterbloom Tundra Keris\n§7A sword with two style, Keris from Eidolon Faction and Sword from Tundra Faction fused into one and makes the truly legendary one\n§2Right-click / Tap and Hold to cast the selected skill\nSneak + Left Click / tap to change selected skill"
 			},
 			"minecraft:should_despawn": false,
 			"minecraft:food": {

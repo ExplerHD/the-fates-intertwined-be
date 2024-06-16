@@ -125,6 +125,12 @@
 				"skill_3": {
 					"on_entry": [
 						"/playanimation @s animation.windblade_claymore.attack_1",
+						"/execute at @e[r=64,rm=0.1] run particle fec:windblade_claymore_attack_3 ~~~",
+						"/damage @e[r=64,type=wither] 50 entity_attack entity @s",
+						"/damage @e[r=64,type=ender_dragon] 100 entity_attack entity @s",
+						"/damage @e[r=64,type=fec:elemental_legionnaire] 10 entity_attack entity @s",
+						"/damage @e[r=64,type=fec:water_eidolon] 100 entity_attack entity @s",
+						"/damage @e[r=64,type=warden] 50 entity_attack entity @s",
 						"/damage @e[r=64,rm=0.1,type=!item] 20 entity_attack entity @s",
 						"/particle fec:nuclear_explosion_wipe ~~1~",
 						"/tellraw @a[r=128] {\"rawtext\":[{\"selector\":\"@s\"},{\"text\":\" used their Ultimate §lPerfect Annillator\"}]}",
