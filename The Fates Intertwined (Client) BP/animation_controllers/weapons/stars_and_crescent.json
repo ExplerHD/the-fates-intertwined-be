@@ -130,7 +130,7 @@
 							"default": "query.all_animations_finished"
 						},
 						{
-							"change": "variable.attack_time&&query.is_sneaking&&query.get_equipped_item_name('stars_and_crescent')"
+							"change": "variable.attack_time&&query.is_sneaking&&query.get_equipped_item_name=='stars_and_crescent'"
 						}
 					]
 				},

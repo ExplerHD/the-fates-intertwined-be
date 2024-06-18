@@ -41,7 +41,9 @@
 					"flipbook": {
 						"base_UV": [56, 88],
 						"size_UV": [8, 8],
-						"step_UV": [0, 0]
+						"step_UV": [0, 0],
+						"frames_per_second": 7,
+						"max_frame": 7
 					}
 				}
 			},

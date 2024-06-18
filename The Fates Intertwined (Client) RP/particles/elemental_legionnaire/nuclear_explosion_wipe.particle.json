@@ -30,33 +30,19 @@
 			"minecraft:particle_initial_speed": 64,
 			"minecraft:particle_motion_dynamic": {},
 			"minecraft:particle_appearance_billboard": {
-				"size": [
-					0.2,
-					0.2
-				],
+				"size": [0.2, 0.2],
 				"facing_camera_mode": "rotate_xyz",
 				"uv": {
 					"texture_width": 128,
 					"texture_height": 128,
 					"flipbook": {
-						"base_UV": [
-							56,
-							88
-						],
-						"size_UV": [
-							8,
-							8
-						],
-						"step_UV": [
-							-8,
-							0
-						],
-						"frames_per_second": 8
+						"base_UV": [56, 88],
+						"size_UV": [8, 8],
+						"step_UV": [-8, 0],
+						"frames_per_second": 7,
+						"max_frame": 7
 					}
 				}
-			},
-			"minecraft:particle_motion_collision": {
-				"coefficient_of_restitution": 4
 			}
 		}
 	}
