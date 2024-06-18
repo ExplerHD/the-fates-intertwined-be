@@ -16,7 +16,7 @@
 				"value": 14
 			},
 			"minecraft:display_name": {
-				"value": "§6Windblade Claymore\n§7A Claymore that imbued with a powerful wind power to destroy your opponent\n§2Right-click / Tap and Hold to cast the selected skill\nSneak + Left Click / tap to change selected skill"
+				"value": "§6Windblade Claymore\n§7A Claymore that imbued with a powerful\nwind power to destroy your opponent\n\n§2Right-click / Tap and Hold to :\nCast the selected skill\nSneak + Left Click / tap to :\nChange selected skill"
 			},
 			"minecraft:food": {
 				"can_always_eat": true

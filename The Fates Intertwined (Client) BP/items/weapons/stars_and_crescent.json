@@ -15,7 +15,7 @@
 			"minecraft:can_destroy_in_creative": false,
 			"minecraft:damage": 9,
 			"minecraft:display_name": {
-				"value": "§4Stars and Crescent\n§7A sword made from the other universes, and this sword is owned by the unknown traveler\n§2Right-click / Tap and Hold to cast the selected skill\nSneak + Left Click / tap to change selected skill"
+				"value": "§4Stars and Crescent\n§7A sword made from the other universes,\nand this sword is owned by the unknown\ntraveler\n\n§2Right-click / Tap and Hold to :\ncast the selected skill\nSneak + Left Click / tap to :\nchange selected skill"
 			},
 			"minecraft:should_despawn": false,
 			"minecraft:food": {

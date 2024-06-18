@@ -218,6 +218,28 @@
 				"can_path_over_lava": false,
 				"avoid_damage_blocks": false
 			},
+			"minecraft:damage_sensor": {
+				"triggers": [
+					{
+						"on_damage": {
+							"filters": [
+								{	
+									"all_of": [
+										{
+											"test": "has_equipment",
+											"subject": "damager",
+											"operator": "==",
+											"value": "minecraft:mace"
+										}
+									]
+								}
+							]
+						},
+						"cause": "all",
+						"damage_multiplier": 0.1
+					}
+				]
+			},
 			"minecraft:combat_regeneration": {
 				"apply_to_self": true,
 				"regeneration_duration": 60
@@ -331,7 +353,7 @@
 								"music stop 3",
 								"event entity @e[type=fec:water_pillar] despawn",
 								"kill @s",
-								"kill @e[r=6,type=item]",
+								"kill @e[r=12]",
 								"tellraw @a[r=64] {\"rawtext\":[{\"text\":\"§c<???> Pathetic...\"}]}",
 								"gamemode d @a[r=64,m=2]",
 								"particle minecraft:huge_explosion_emitter ~~~5",

@@ -30,7 +30,7 @@
 				"texture": "fec_eidolon_4_staff"
 			},
 			"minecraft:display_name": {
-				"value": "§6Eidolon Staff : Water Sakura\n§7A double sided blade staff that crafted with the remnant power of Unknown mortals, crafted using the Eidolon Power Type 4\n§2Right-click / Tap and Hold to cast the selected skill\nSneak + Left Click / tap to change selected skill"
+				"value": "§6Eidolon Staff : Water Sakura\n§7A double sided blade staff that crafted\nwith the remnant power of Unknown\nmortals, crafted using the Eidolon Power\nType 4\n\n§2Right-click / Tap and Hold to :\ncast nthe selected skill\nSneak + Left Click / tap to :\nChange selected skill"
 			},
 			"minecraft:food": {
 				"can_always_eat": true

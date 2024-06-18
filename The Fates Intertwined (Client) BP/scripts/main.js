@@ -29,7 +29,7 @@ function getScore(target, objective) {
 // Loop System (delay 1 second)
 system.runInterval(() => {
     world.getDimension('overworld').runCommand('effect @a[tag=speed_ranger] speed 1 1')
-    world.getDimension('overworld').runCommand('titleraw @a[hasitem={item=fec:wind_essence,location=slot.weapon.mainhand}] actionbar {"rawtext":[{"text":"Cooldown : §e"},{"score":{"name":"*","objective":"wind_essence"}},{"text":" Ticks"}]}')
+    world.getDimension('overworld').runCommand('titleraw @a[hasitem={item=fec:wind_essence,location=slot.weapon.mainhand}] actionbar {"rawtext":[{"text":"Cooldown : \nUpdraft : §e"},{"score":{"name":"*","objective":"wind_essence_up"}},{"text":"s§r\nDash Forward : §e"},{"score":{"name":"*","objective":"wind_essence"}},{"text":" Ticks"}]}')
     world.getDimension('overworld').runCommand('titleraw @a[hasitem={item=feather,location=slot.weapon.mainhand},tag=speed_ranger] actionbar {"rawtext":[{"text":"Cooldown : §e"},{"score":{"name":"*","objective":"dash_cooldown"}},{"text":"s"}]}')
 }, 1)
 
@@ -105,35 +105,26 @@ world.afterEvents.itemUse.subscribe((starting) => {
         }
     }
 
-    if(starting.itemStack.typeId === 'fec:wind_essence' && getScore(player, 'wind_essence') == 0){
-        if(getScore(player, 'wind_essence') == 0) {
-            if(player.isSneaking == true){
-                const IframeOptions = {
-                    amplifier: 255,
-                    showParticles: false
-                }
-                player.applyKnockback(player.getViewDirection().x, player.getViewDirection().z, 0.4, 1.1);
-                player.runCommandAsync(`playsound mob.enderdragon.flap "${player.name}"`);
-                player.runCommandAsync(`particle fec:dash_fx ~~~`);
-                player.runCommandAsync(`particle fec:dash_fx ~~1~`);
-                player.runCommandAsync(`particle fec:dash_fx ~~2~`);
-                player.runCommandAsync(`particle fec:dash_fx ~~3~`);
-                player.addEffect('resistance', 45, IframeOptions);
-                addScore(player, 'wind_essence', 10);
-            } else {
-                player.applyKnockback(player.getViewDirection().x, player.getViewDirection().z, 3.1, 0.4);
-                player.runCommandAsync(`playsound mob.enderdragon.flap "${player.name}"`);
-                player.runCommandAsync(`particle fec:windblade_claymore_attack_3 ~~~`);
-                addScore(player, 'wind_essence', 20);
+    if(starting.itemStack.typeId === 'fec:wind_essence'){
+        if(player.isSneaking == true && getScore(player, "wind_essence_up") == 0){
+            const IframeOptions = {
+                amplifier: 255,
+                showParticles: false
             }
-        } else {
-            const soundSettings = {
-                location: player.location,
-                volume: 1,
-                pitch: 1
-            }
-            player.runCommandAsync(`tellraw "${player.name}" {"rawtext":[{"text":"Wait §c"},{"score":{"name":"*","objective":"wind_essence"}},{"text":" §rTicks"}]}`)
-            player.playSound("note.bass", soundSettings)
+            player.applyKnockback(player.getViewDirection().x, player.getViewDirection().z, 0.4, 1.1);
+            player.runCommandAsync(`playsound mob.enderdragon.flap "${player.name}"`);
+            player.runCommandAsync(`particle fec:dash_fx ~~~`);
+            player.runCommandAsync(`particle fec:dash_fx ~~1~`);
+            player.runCommandAsync(`particle fec:dash_fx ~~2~`);
+            player.runCommandAsync(`particle fec:dash_fx ~~3~`);
+            player.addEffect('resistance', 40, IframeOptions);
+            addScore(player, 'wind_essence_up', 5);
+        } 
+        if(player.isSneaking == false && getScore(player, "wind_essence") == 0) {
+            player.applyKnockback(player.getViewDirection().x, player.getViewDirection().z, 3.1, 0.4);
+            player.runCommandAsync(`playsound mob.enderdragon.flap "${player.name}"`);
+            player.runCommandAsync(`particle fec:windblade_claymore_attack_3 ~~~`);
+            addScore(player, 'wind_essence', 20);
         }
     }
 
@@ -262,7 +253,7 @@ world.beforeEvents.chatSend.subscribe((commandData) => {
         case '.help':
             commandData.cancel = true;
             players.sendMessage(`.help - For command list`);
-            players.sendMessage(`.recipe (Under Development) - For showing recipes from The Fates Intertwined from the other tables, like Legendary Fabricator`);
+            players.sendMessage(`.recipe - For showing recipes from The Fates Intertwined from the outside the crafting tables, like Legendary Fabricator, or Zenith Fabricator`);
             players.sendMessage(`.reset_bug - For fixing bugs caused by Legendary Weapons`);
             players.sendMessage(`.statistic check - Used to check the statistics like Blocks traveled, Attacks with Legendary Weapons, etc`);
             players.sendMessage(`.reset_leaderboard (Needs Admin Permission) - For Reset the Leaderboards, useful for server`);
@@ -270,7 +261,7 @@ world.beforeEvents.chatSend.subscribe((commandData) => {
         case '.recipe':
             commandData.cancel = true;
             players.sendMessage(`Usage :`);
-            players.sendMessage(`.recipe <item-name>, Current Item Name : winterbloom_sword, rage_of_sakura, murasama_calamity, spear_of_heart, legionnaire_medalion, zenith, stars_and_crescent`);
+            players.sendMessage(`.recipe <item-name>, Current Item Name : winterbloom_sword, rage_of_sakura, murasama_calamity, spear_of_heart, legionnaire_medalion, zenith`);
             break;
         case '.recipe winterbloom_sword':
             commandData.cancel = true;
@@ -315,7 +306,7 @@ world.beforeEvents.chatSend.subscribe((commandData) => {
         case '.reset_bug':
             commandData.cancel = true;
             players.runCommandAsync('function reset_bug');
-            players.sendMessage(`Bugs caused by Legendary Weapons is fixed`)
+            players.sendMessage(`Bugs caused by Legendary Weapons is fixed`);
             break;
         case '.statistic check':
             commandData.cancel = true;

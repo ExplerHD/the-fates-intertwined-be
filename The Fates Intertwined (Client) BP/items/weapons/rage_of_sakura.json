@@ -15,7 +15,7 @@
 			"minecraft:can_destroy_in_creative": false,
 			"minecraft:damage": 10,
 			"minecraft:display_name": {
-				"value": "§6Rage Of Sakura\n§7A katana with the sakura and blood aura that surrounds the sword with serrated shape\n§2Right-click / Tap and Hold to cast the selected skill\nSneak + Left Click / tap to change selected skill"
+				"value": "§6Rage Of Sakura\n§7A katana with the sakura and blood\naura that surrounds the sword with \nserrated shape\n\n§2Right-click / Tap and Hold to\nCast the selected skill\nSneak + Left Click / tap to :\nChange selected skill"
 			},
 			"minecraft:should_despawn": false,
 			"minecraft:food": {
@@ -23,10 +23,6 @@
 			},
 			"minecraft:use_duration": 9999,
 			"minecraft:max_stack_size": 1,
-			"minecraft:enchantable": {
-				"slot": "sword",
-				"value": 18
-			},
 			"minecraft:hand_equipped": true,
 			"tag:minecraft:is_sword": {}
 		}

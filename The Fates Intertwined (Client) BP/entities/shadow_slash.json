@@ -31,7 +31,7 @@
         "has_gravity": false
       },
       "minecraft:timer": {
-        "time": 4,
+        "time": 2,
         "looping": false,
         "time_down_event": {
           "event": "despawn"

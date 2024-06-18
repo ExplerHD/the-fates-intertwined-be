@@ -29,13 +29,29 @@
 		},
 		"events": {
 			"on_use": {
-				"run_command": {
-					"command": [
-						"effect @a[r=3] regeneration 3 4",
-						"particle fec:water_charge ~~~",
-						"playsound bucket.fill_water @a[r=16]"
-					]
-				}
+				"sequence": [
+					{
+						"condition": "!query.is_sneaking",
+						"run_command": {
+							"command": [
+								"effect @a[r=3] regeneration 3 4",
+								"particle fec:water_charge ~~~",
+								"playsound bucket.fill_water @a[r=16]"
+							]
+						}
+					},
+					{
+						"condition": "query.is_sneaking",
+						"run_command": {
+							"command": [
+								"tag @p[r=16,rm=0.1] add healed",
+								"effect @a[tag=healed] regeneration 3 4",
+								"execute at @a[tag=healed] run particle fec:water_charge ~~~",
+								"playsound bucket.fill_water @a[r=16]"
+							]
+						}
+					}
+				]
 			}
 		}
 	}

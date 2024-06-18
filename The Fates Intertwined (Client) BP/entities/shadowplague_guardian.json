@@ -389,7 +389,8 @@
 							"command": [
 								"music stop 3",
 								"kill @s",
-								"kill @e[r=6,type=item]",
+								"kill @e[r=6]",
+								"particle fec:paranoia ~~~",
 								"tellraw @a[r=64] {\"rawtext\":[{\"text\":\"You are not ready for this boss, Use Minecraft Sword to damage them effectively\"}]}",
 								"gamemode d @a[r=64,m=2]"
 							]
@@ -399,8 +400,8 @@
 						"filters": {
 							"test": "actor_health",
 							"subject": "self",
-							"operator": "<=",
-							"value": 0
+							"operator": "<",
+							"value": 1
 						},
 						"queue_command": {
 							"command": [

@@ -21,18 +21,20 @@
 			"minecraft:max_stack_size": 1,
 			"minecraft:cooldown": {
 				"category": "fire_essence",
-				"duration": 1
+				"duration": 20
 			},
 			"minecraft:display_name": {
-				"value": "§bFire Essence\n§2Right-click To Shoot a Improved Fireball\n§9Cooldown : 1 Second"
+				"value": "§bFire Essence\n§2Right-click To :\nCast a Fire across the platform\n and gives you fire immunity\n§9Cooldown : 20 Second"
 			}
 		},
 		"events": {
 			"on_use": {
-				"shoot": {
-					"projectile": "minecraft:fireball",
-					"launch_power": 2,
-					"target": "self"
+				"run_command": {
+					"command": [
+						"fill ~-5~-2~-5~5~5~5 fire replace air",
+						"effect @s fire_resistance 5 0 true",
+						"damage @e[r=6,rm=0.1] 4 magic entity @s"
+					]
 				}
 			}
 		}

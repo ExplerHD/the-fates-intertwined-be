@@ -6,33 +6,17 @@
 			"places_feature": "fec:zenith_fabricator_altar"
 		},
 		"conditions": {
-			"placement_pass": "surface_pass",
-			"minecraft:biome_filter": {}
+			"placement_pass": "after_surface_pass"
 		},
 		"distribution": {
 			"iterations": 1,
-			"scatter_chance": 20,
-			"x": {
-				"distribution": "gaussian",
-				"extent": [
-					0,
-					16
-				]
+			"scatter_chance": {
+				"numerator": 1,
+				"denominator": 500
 			},
-			"y": {
-				"distribution": "gaussian",
-				"extent": [
-					64,
-					120
-				]
-			},
-			"z": {
-				"distribution": "gaussian",
-				"extent": [
-					0,
-					16
-				]
-			}
+			"x": 0,
+			"y": "query.heightmap(variable.worldx, variable.worldz) - 2",
+			"z": 0
 		}
 	}
 }

@@ -21,7 +21,7 @@
 			},
 			"minecraft:use_duration": 999999,
 			"minecraft:display_name": {
-				"value": "§6Blade of The End\n§7A Cosmic blade that forged with the void power\n§2Right-click / Tap and Hold to cast the selected skill\nSneak + Left Click / tap to change selected skill\nSneak + Right Click / Tap and Hold to hide the blade"
+				"value": "§6Blade of The End\n§7A Cosmic blade that forged with the\nvoid power\n\n§2Right-click / Tap and Hold to :\nCast the selected skill\nSneak + Left Click / tap to :\nChange selected skill\nSneak + Right Click / Tap and Hold to :\nHide the blade"
 			},
 			"minecraft:hand_equipped": true,
 			"minecraft:icon": {

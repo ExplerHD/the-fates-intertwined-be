@@ -5,10 +5,10 @@
 			"identifier": "fec:zenith_fabricator_altar"
 		},
 		"structure_name": "mystructure:zenith_fabricator_altar",
-		"adjustment_radius": 0,
+		"adjustment_radius": 4,
 		"facing_direction": "random",
 		"constraints": {
-			"unburied": {}
+			"grounded": {}
 		}
 	}
 }

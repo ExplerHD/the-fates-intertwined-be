@@ -142,13 +142,10 @@
 						"/particle fec:light_blast ~~~",
 						"/tp @s ^^^1 true",
 						"/tp @s ^^^1 true",
-						"/particle fec:light_blast ~~~",
 						"/tp @s ^^^1 true",
 						"/tp @s ^^^1 true",
-						"/particle fec:light_blast ~~~",
 						"/tp @s ^^^1 true",
 						"/tp @s ^^^1 true",
-						"/particle fec:light_blast ~~~",
 						"/playsound item.trident.hit",
 						"/scoreboard players add @s stars_and_crescent_c1 10"
 					],

@@ -21,7 +21,7 @@
 			},
 			"minecraft:use_duration": 999999,
 			"minecraft:display_name": {
-				"value": "Blade of The End\n§7A Cosmic blade that forged with the void power, §cBLADE DISABLED\n§2Sneak + Right-click / Tap and Hold to show the blade"
+				"value": "Blade of The End\n§7A Cosmic blade that forged with the\nvoid power, §cBLADE DISABLED\n\n§2Sneak + Right-click / Tap and Hold to :\nShow the blade"
 			},
 			"minecraft:hand_equipped": true,
 			"minecraft:icon": {

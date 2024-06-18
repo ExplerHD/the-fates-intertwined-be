@@ -13,12 +13,15 @@ scoreboard players set @e[tag=ender_dragon_p2,scores={ender_dragon_p2=1801..}] e
 scoreboard objectives add atk_cooldown dummy
 scoreboard objectives add dash_cooldown dummy
 scoreboard objectives add wind_essence dummy
+scoreboard objectives add wind_essence_up dummy
 scoreboard players remove @a[scores={cdtick=20..}] atk_cooldown 1
 scoreboard players remove @a[scores={cdtick=20..}] dash_cooldown 1
+scoreboard players remove @a[scores={cdtick=20..}] wind_essence_up 1
 scoreboard players remove @a wind_essence 1
 scoreboard players set @a[scores={atk_cooldown=..0}] atk_cooldown 0
 scoreboard players set @a[scores={dash_cooldown=..0}] dash_cooldown 0
 scoreboard players set @a[scores={wind_essence=..0}] wind_essence 0
+scoreboard players set @a[scores={wind_essence_up=..0}] wind_essence_up 0
 
 # Entity Runtime
 execute as @e[type=fec:eidolon_4_pillar] at @s run tp @s ^^^1
@@ -28,10 +31,9 @@ execute as @e[type=fec:crescent_pillar] at @s run tp @s ^^^1 ~5 0
 execute as @e[type=fec:crescent_pillar] at @s run damage @e[type=!fec:crescent_pillar,r=3] 15 entity_attack entity @s
 execute at @e[type=fec:crescent_pillar] run particle fec:crescent_pillar ~~~
 execute as @e[type=fec:zenith_base] at @s run tp @s ^^^ ~5 0
-execute as @e[type=fec:shadow_slash] at @s run particle fec:shadow_slash ~~~
+execute as @e[type=fec:shadow_slash] at @s run particle fec:shadow_slash ^^1.5^
 execute as @e[type=fec:shadow_slash] at @s run tp @s ^^^1
 execute as @e[type=fec:shadow_slash] at @s run damage @e[type=!fec:shadow_slash,r=6] 12 entity_attack entity @s
-execute at @e[type=fec:shadow_slash] run particle fec:blade_of_the_end_skill_1 ^^1.5^1
 
 # Auto enchant Mending
 enchant @a[hasitem={item=fec:stardust_armor_helmet,location=slot.weapon.mainhand}] mending

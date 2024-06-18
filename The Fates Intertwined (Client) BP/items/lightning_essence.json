@@ -23,7 +23,7 @@
 				}
 			},
 			"minecraft:display_name": {
-				"value": "§bLightning Essence\n§2Right-click / Tap and Hold to Cast Lightning Teleport\n\n§9Cooldown : 15 Seconds"
+				"value": "§bLightning Essence\n§2Right-click / Tap and Hold to :\nCast Lightning Teleport\n\n§9Cooldown : 15 Seconds"
 			},
 			"minecraft:should_despawn": false
 		},

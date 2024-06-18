@@ -14,7 +14,7 @@
 			},
 			"minecraft:can_destroy_in_creative": false,
 			"minecraft:display_name": {
-				"value": "§6Godly Murasama\n§7A sword from Terraria Calamity Mod, upgraded to kill mob and players easier\n§2Right-click / Tap and Hold to cast the selected skill\nSneak + Left Click / tap to change selected skill"
+				"value": "§6Godly Murasama\n§7A sword from Terraria Calamity Mod, upgraded\nto kill mob and players easier\n\n§2Right-click / Tap and Hold to :\nCast the selected skill\nSneak + Left Click / tap to :\nChange selected skill"
 			},
 			"minecraft:damage": 11,
 			"minecraft:should_despawn": false,
@@ -23,10 +23,6 @@
 			},
 			"minecraft:use_duration": 999999,
 			"minecraft:max_stack_size": 1,
-			"minecraft:enchantable": {
-				"slot": "sword",
-				"value": 18
-			},
 			"minecraft:hand_equipped": true,
 			"tag:minecraft:is_sword": {}
 		}
