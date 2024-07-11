@@ -7,7 +7,7 @@
 				"idle": {
 					"transitions": [
 						{
-							"walking": "(query.get_equipped_item_name=='stars_and_crescent')&&(q.is_moving)"
+							"walking": "(query.get_equipped_item_name=='stars_and_crescent')&&(q.is_sprinting)"
 						}
 					],
 					"blend_transition": 0.2
@@ -18,7 +18,7 @@
 					],
 					"transitions": [
 						{
-							"idle": "!q.is_moving||(q.scoreboard('atkp_delay')>1)"
+							"idle": "(!q.is_sprinting)||(query.get_equipped_item_name!='stars_and_crescent')"
 						}
 					],
 					"blend_transition": 0.2

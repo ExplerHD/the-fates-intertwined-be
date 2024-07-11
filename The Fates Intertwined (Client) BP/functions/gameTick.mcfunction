@@ -22,6 +22,9 @@ scoreboard players set @a[scores={atk_cooldown=..0}] atk_cooldown 0
 scoreboard players set @a[scores={dash_cooldown=..0}] dash_cooldown 0
 scoreboard players set @a[scores={wind_essence=..0}] wind_essence 0
 scoreboard players set @a[scores={wind_essence_up=..0}] wind_essence_up 0
+effect @a[tag=speed_ranger] speed 1 1
+titleraw @a[hasitem={item=fec:wind_essence,location=slot.weapon.mainhand}] actionbar {"rawtext":[{"text":"Cooldown : \nUpdraft : §e"},{"score":{"name":"*","objective":"wind_essence_up"}},{"text":"s§r\nDash Forward : §e"},{"score":{"name":"*","objective":"wind_essence"}},{"text":" Ticks"}]}
+titleraw @a[hasitem={item=feather,location=slot.weapon.mainhand},tag=speed_ranger] actionbar {"rawtext":[{"text":"Cooldown : §e"},{"score":{"name":"*","objective":"dash_cooldown"}},{"text":"s"}]}
 
 # Entity Runtime
 execute as @e[type=fec:eidolon_4_pillar] at @s run tp @s ^^^1

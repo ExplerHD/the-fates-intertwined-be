@@ -6,6 +6,36 @@
 			"states": {
 				"default": {
 					"on_entry": [
+						"/scoreboard players set @s atkp_delay 0",
+						"/camera @s clear"
+					],
+					"on_exit": [
+						"/scoreboard players set @s atkp_delay 1"
+					],
+					"transitions": [
+						{
+							"sprint": "q.is_sprinting&&q.get_equipped_item_name=='stars_and_crescent'"
+						},
+						{
+							"atk_1": "!q.is_sprinting&&variable.attack_time&&!query.is_sneaking&&q.get_equipped_item_name=='stars_and_crescent'"
+						},
+						{
+							"skill_1_fail": "query.get_equipped_item_name=='stars_and_crescent'&&query.is_using_item&&(query.scoreboard('stars_and_crescent')==0)&&(query.scoreboard('stars_and_crescent_c1')==0)"
+						},
+						{
+							"skill_2": "query.get_equipped_item_name=='stars_and_crescent'&&query.is_using_item&&(query.scoreboard('stars_and_crescent')==1)&&(query.scoreboard('stars_and_crescent_c2')==0)"
+						},
+						{
+							"skill_3": "query.get_equipped_item_name=='stars_and_crescent'&&query.is_using_item&&(query.scoreboard('stars_and_crescent')==2)&&(query.scoreboard('stars_and_crescent_c3')==0)"
+						},
+						{
+							"change": "variable.attack_time&&query.is_sneaking&&query.get_equipped_item_name=='stars_and_crescent'"
+						}
+					]
+				},
+				"sprint": {
+					"on_entry": [
+						"/camera @s set minecraft:third_person",
 						"/scoreboard players set @s atkp_delay 0"
 					],
 					"on_exit": [
@@ -13,7 +43,10 @@
 					],
 					"transitions": [
 						{
-							"atk_1": "variable.attack_time&&!query.is_sneaking&&q.get_equipped_item_name=='stars_and_crescent'"
+							"default": "!q.is_sprinting&&q.get_equipped_item_name=='stars_and_crescent'"
+						},
+						{
+							"atk_1": "q.is_sprinting&&variable.attack_time&&!query.is_sneaking&&q.get_equipped_item_name=='stars_and_crescent'"
 						},
 						{
 							"skill_1": "query.get_equipped_item_name=='stars_and_crescent'&&query.is_using_item&&(query.scoreboard('stars_and_crescent')==0)&&(query.scoreboard('stars_and_crescent_c1')==0)"
@@ -44,7 +77,10 @@
 							"atk_2": "(variable.attack_time)&&(query.scoreboard('atkp_delay')>=10)"
 						},
 						{
-							"default": "query.scoreboard('atkp_delay')>=30"
+							"default": "query.scoreboard('atkp_delay')>=30&&!q.is_sprinting"
+						},
+						{
+							"sprint": "query.scoreboard('atkp_delay')>=30&&q.is_sprinting"
 						},
 						{
 							"change": "variable.attack_time&&query.is_sneaking&&query.get_equipped_item_name=='stars_and_crescent'"
@@ -66,7 +102,10 @@
 							"atk_3": "(variable.attack_time)&&(query.scoreboard('atkp_delay')>=10)"
 						},
 						{
-							"default": "query.scoreboard('atkp_delay')>=30"
+							"default": "query.scoreboard('atkp_delay')>=30&&!q.is_sprinting"
+						},
+						{
+							"sprint": "query.scoreboard('atkp_delay')>=30&&q.is_sprinting"
 						},
 						{
 							"change": "variable.attack_time&&query.is_sneaking&&query.get_equipped_item_name=='stars_and_crescent'"
@@ -88,7 +127,10 @@
 							"atk_4": "(variable.attack_time)&&(query.scoreboard('atkp_delay')>=10)"
 						},
 						{
-							"default": "query.scoreboard('atkp_delay')>=30"
+							"default": "query.scoreboard('atkp_delay')>=30&&!q.is_sprinting"
+						},
+						{
+							"sprint": "query.scoreboard('atkp_delay')>=30&&q.is_sprinting"
 						},
 						{
 							"change": "variable.attack_time&&query.is_sneaking&&query.get_equipped_item_name=='stars_and_crescent'"
@@ -110,7 +152,10 @@
 							"atk_5": "(variable.attack_time)&&(query.scoreboard('atkp_delay')>=10)"
 						},
 						{
-							"default": "query.scoreboard('atkp_delay')>=30"
+							"default": "query.scoreboard('atkp_delay')>=30&&!q.is_sprinting"
+						},
+						{
+							"sprint": "query.scoreboard('atkp_delay')>=30&&q.is_sprinting"
 						},
 						{
 							"change": "variable.attack_time&&query.is_sneaking&&query.get_equipped_item_name=='stars_and_crescent'"
@@ -127,10 +172,23 @@
 					],
 					"transitions": [
 						{
-							"default": "query.all_animations_finished"
+							"default": "query.all_animations_finished&&!q.is_sprinting"
+						},
+						{
+							"sprint": "query.all_animations_finished&&q.is_sprinting"
 						},
 						{
 							"change": "variable.attack_time&&query.is_sneaking&&query.get_equipped_item_name=='stars_and_crescent'"
+						}
+					]
+				},
+				"skill_1_fail": {
+					"on_entry": [
+						"/tellraw @s {\"rawtext\":[{\"text\":\"§cYou need to sprint to use this ability\"}]}"
+					],
+					"transitions": [
+						{
+							"default": "!query.is_using_item"
 						}
 					]
 				},
@@ -151,7 +209,7 @@
 					],
 					"transitions": [
 						{
-							"default": "!query.is_using_item"
+							"sprint": "!query.is_using_item"
 						}
 					]
 				},

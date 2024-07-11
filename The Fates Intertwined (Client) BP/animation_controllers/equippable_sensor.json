@@ -42,7 +42,7 @@
 				},
 				"winterbloom_sword": {
 					"on_entry": [
-						"/camera @s set minecraft:third_person"
+						"/camera @s clear"
 					],
 					"on_exit": [
 						"/camera @s clear"
@@ -55,7 +55,7 @@
 				},
 				"rage_of_sakura": {
 					"on_entry": [
-						"/camera @s set minecraft:third_person"
+						"/camera @s clear"
 					],
 					"on_exit": [
 						"/camera @s clear"
@@ -68,7 +68,7 @@
 				},
 				"murasama_calamity": {
 					"on_entry": [
-						"/camera @s set minecraft:third_person"
+						"/camera @s clear"
 					],
 					"on_exit": [
 						"/camera @s clear"
@@ -81,7 +81,7 @@
 				},
 				"spear_of_heart": {
 					"on_entry": [
-						"/camera @s set minecraft:third_person"
+						"/camera @s clear"
 					],
 					"on_exit": [
 						"/camera @s clear"
@@ -94,7 +94,7 @@
 				},
 				"blade_of_the_end": {
 					"on_entry": [
-						"/camera @s set minecraft:third_person"
+						"/camera @s clear"
 					],
 					"on_exit": [
 						"/camera @s clear"
@@ -107,7 +107,7 @@
 				},
 				"windblade_claymore": {
 					"on_entry": [
-						"/camera @s set minecraft:third_person"
+						"/camera @s clear"
 					],
 					"on_exit": [
 						"/camera @s clear"
@@ -120,7 +120,7 @@
 				},
 				"zenith": {
 					"on_entry": [
-						"/camera @s set minecraft:third_person",
+						"/camera @s clear",
 						"/tag @s add zenith"
 					],
 					"on_exit": [
@@ -134,7 +134,7 @@
 				},
 				"eidolon_4_staff": {
 					"on_entry": [
-						"/camera @s set minecraft:third_person"
+						"/camera @s clear"
 					],
 					"on_exit": [
 						"/camera @s clear"
@@ -147,7 +147,7 @@
 				},
 				"stars_and_crescent": {
 					"on_entry": [
-						"/camera @s set minecraft:third_person",
+						"/camera @s clear",
 						"/tag @s add stars_and_crescent"
 					],
 					"on_exit": [

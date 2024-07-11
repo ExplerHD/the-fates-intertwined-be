@@ -5,16 +5,8 @@
 			"loop": true,
 			"bones": {
 				"rightArm": {
-					"rotation": [
-						"80",
-						"55",
-						"10"
-					],
-					"position": [
-						"8",
-						"0",
-						"30"
-					],
+					"rotation": ["80", "55", "10"],
+					"position": ["8", "0", "30"],
 					"scale": 5
 				}
 			}
@@ -23,16 +15,8 @@
 			"loop": true,
 			"bones": {
 				"rightArm": {
-					"rotation": [
-						"90",
-						"85",
-						"10"
-					],
-					"position": [
-						"-20",
-						"0",
-						"20"
-					],
+					"rotation": ["90", "85", "10"],
+					"position": ["-20", "0", "20"],
 					"scale": 5
 				}
 			}
@@ -41,64 +25,41 @@
 			"loop": true,
 			"animation_length": 2,
 			"bones": {
-				"rightArm": {
-					"rotation": [
-						80,
-						70,
-						10
-					],
-					"position": [
-						8,
-						0,
-						10
-					],
-					"scale": 2
-				},
 				"rightItem": {
-					"rotation": [
-						80,
-						70,
-						10
-					],
-					"position": [
-						8,
-						0,
-						10
-					],
+					"rotation": [52.18911, 64.76456, -19.99721],
+					"position": [8, 0, 10],
 					"scale": 2
 				},
-				"ambience": {
-					"rotation": [
-						80,
-						70,
-						10
-					],
-					"position": [
-						8,
-						0,
-						10
-					],
+				"rightArm": {
+					"rotation": [52.18911, 64.76456, -19.99721],
+					"position": [8, 0, 10],
 					"scale": 2
 				},
 				"ambience2": {
-					"rotation": [
-						80,
-						70,
-						10
-					],
-					"position": [
-						8,
-						0,
-						10
-					],
+					"rotation": [52.18911, 64.76456, -19.99721],
+					"position": [8, 0, 10],
 					"scale": 2
 				},
-				"view": {
-					"rotation": [
-						0,
-						0,
-						0
-					]
+				"ambience": {
+					"rotation": [52.18911, 64.76456, -19.99721],
+					"position": [8, 0, 10],
+					"scale": 2
+				}
+			}
+		},
+		"animation.item.stars_and_crescent": {
+			"loop": true,
+			"animation_length": 2,
+			"bones": {
+				"leftItem": {
+					"rotation": [121.39971, 9.23306, 179.20002],
+					"position": [-26.24971, -3.10503, 20.50524],
+					"scale": 2
+				},
+				"rightItem": {
+					"rotation": [52.18911, 64.76456, -19.99721],
+					"position": [8, 0, 10],
+					"scale": 2
 				}
 			}
 		}

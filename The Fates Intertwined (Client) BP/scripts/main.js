@@ -10,6 +10,14 @@ function addScore(target, objective, score) {
     }
 }
 
+function removeScore(target, objective, score) {
+    try {
+        world.scoreboard.getObjective(objective).addScore(target, score)
+    } catch (e) {
+        target.runCommandAsync(`scoreboard players remove "${target.name}" ${objective} ${score}`)
+    }
+}
+
 function setScore(target, objective, score) {
     try {
         world.scoreboard.getObjective(objective).setScore(target, score)
@@ -26,24 +34,16 @@ function getScore(target, objective) {
     }
 }
 
-// Loop System (delay 1 second)
-system.runInterval(() => {
-    world.getDimension('overworld').runCommand('effect @a[tag=speed_ranger] speed 1 1')
-    world.getDimension('overworld').runCommand('titleraw @a[hasitem={item=fec:wind_essence,location=slot.weapon.mainhand}] actionbar {"rawtext":[{"text":"Cooldown : \nUpdraft : §e"},{"score":{"name":"*","objective":"wind_essence_up"}},{"text":"s§r\nDash Forward : §e"},{"score":{"name":"*","objective":"wind_essence"}},{"text":" Ticks"}]}')
-    world.getDimension('overworld').runCommand('titleraw @a[hasitem={item=feather,location=slot.weapon.mainhand},tag=speed_ranger] actionbar {"rawtext":[{"text":"Cooldown : §e"},{"score":{"name":"*","objective":"dash_cooldown"}},{"text":"s"}]}')
-}, 1)
-
 // Detects entity being hurt, or you hit an entity
 world.afterEvents.entityHitEntity.subscribe((hurtEvent) => {
     const source = hurtEvent.damagingEntity;
     const damagedEntity = hurtEvent.hitEntity;
 
     if (source.hasTag('healer') && getScore(source, 'atk_cooldown') == 0) {
-        const health = source.getComponent("health");
-        const currentHealth = health.currentValue;
-        health.setCurrentValue(currentHealth + 1);
         source.runCommandAsync(`playsound random.orb ${source.name}`);
-        setScore(source, 'atk_cooldown', 1);
+        source.runCommandAsync(`particle fec:winterbloom_sword_attack_4_area ~~~`);
+        source.runCommandAsync(`effect @s regeneration 3 3`)
+        setScore(source, 'atk_cooldown', 8);
     }
 
     if (source.hasTag('initiator')){
@@ -130,6 +130,23 @@ world.afterEvents.itemUse.subscribe((starting) => {
 
     if(!player.hasTag("class_selected") && starting.itemStack.typeId === 'minecraft:compass') classForm(player);
 
+    if(player.hasTag("class_selected") && starting.itemStack.typeId === 'minecraft:nether_star') {
+        const soundOpt = {
+            location: player.location,
+            volume: 1,
+            pitch: 1
+        }
+        player.runCommandAsync(`tellraw @s {"rawtext":[{"text":"§cRemoving all of your Impurity"}]}`);
+        player.runCommandAsync(`particle fec:paranoia ~~~`);
+        player.runCommandAsync(`tag @s remove class_selected`);
+        player.runCommandAsync(`tag @s remove joined`);
+        player.runCommandAsync(`tag @s remove speed_ranger`);
+        player.runCommandAsync(`tag @s remove healer`);
+        player.runCommandAsync(`tag @s remove initiator`);
+        player.runCommandAsync(`tag @s remove penetrator`);
+        player.playSound("random.toast", soundOpt);
+    }
+
     function classForm(){
         let classForms = new ActionFormData;
         classForms.title("Select Your Class");
@@ -175,7 +192,7 @@ world.afterEvents.itemUse.subscribe((starting) => {
     function healerMage(){
         let HealerMage = new MessageFormData;
         HealerMage.title("Confirmation");
-        HealerMage.body("Are you sure you want to select Speed Ranger?\nThis class have :\n Perks : Improved Healing (+1 HP Every hit, Cooldown 1 Second)\n\n This Class have :\n  1 Wooden Sword\n  1 Leather Armor Set\n  32 Bread\n  1 Exclusive Medalion (Loving Sakura)");
+        HealerMage.body("Are you sure you want to select Healer Mage?\nThis class have :\n Perks : Improved Healing (Healing Aura when hit, Cooldown 8 Second)\n\n This Class have :\n  1 Wooden Sword\n  1 Leather Armor Set\n  32 Bread\n  1 Exclusive Medalion (Loving Sakura)");
         HealerMage.button1("No, Let me think again");
         HealerMage.button2("Yes, Sure");
     
@@ -200,7 +217,7 @@ world.afterEvents.itemUse.subscribe((starting) => {
     function meleeInitiator(){
         let meleeInitiator = new MessageFormData;
         meleeInitiator.title("Confirmation");
-        meleeInitiator.body("Are you sure you want to select Speed Ranger?\nThis class have :\n Perks : Initiator Strike (Increased damage when entering combat)\n\n This Class have :\n  1 Stone Sword\n  1 Chainmail with Leather Armor Set\n  16 Steak\n  1 Exclusive Medalion (Lightning Tajador)");
+        meleeInitiator.body("Are you sure you want to select Melee Initiator?\nThis class have :\n Perks : Initiator Strike (Increased damage when entering combat)\n\n This Class have :\n  1 Stone Sword\n  1 Chainmail with Leather Armor Set\n  16 Steak\n  1 Exclusive Medalion (Lightning Tajador)");
         meleeInitiator.button1("No, Let me think again");
         meleeInitiator.button2("Yes, Sure");
         meleeInitiator.show(player).then(r => {
@@ -224,7 +241,7 @@ world.afterEvents.itemUse.subscribe((starting) => {
     function heavyPenetrator(){
         let HeavyPenetrator = new MessageFormData;
         HeavyPenetrator.title("Confirmation");
-        HeavyPenetrator.body("Are you sure you want to select Speed Ranger?\nThis class have :\n Perks : Brute Windforce (Massive knockbacks and Armor Penetrating Damage with cooldown for 5 Seconds)\n\n This Class have :\n  1 Wooden Sword\n 1 Chainmail Armor Set\n  16 Steak\n  1 Exclusive Medalion (Land of Peace)");
+        HeavyPenetrator.body("Are you sure you want to select Heavy Penetrator?\nThis class have :\n Perks : Brute Windforce (Massive knockbacks and Armor Penetrating Damage with cooldown for 5 Seconds)\n\n This Class have :\n  1 Wooden Sword\n 1 Chainmail Armor Set\n  16 Steak\n  1 Exclusive Medalion (Land of Peace)");
         HeavyPenetrator.button1("No, Let me think again");
         HeavyPenetrator.button2("Yes, Sure");
         HeavyPenetrator.show(player).then(r => {
@@ -234,10 +251,10 @@ world.afterEvents.itemUse.subscribe((starting) => {
                 player.runCommandAsync(`give "${player.name}" fec:land_of_peace_medal`)
                 player.runCommandAsync(`give "${player.name}" wooden_sword`);
                 player.runCommandAsync(`give "${player.name}" bread 16`);
-                player.runCommandAsync(`give "${player.name}" leather_helmet 1`);
-                player.runCommandAsync(`give "${player.name}" leather_chestplate 1`);
-                player.runCommandAsync(`give "${player.name}" leather_leggings 1`);
-                player.runCommandAsync(`give "${player.name}" leather_boots 1`);
+                player.runCommandAsync(`give "${player.name}" chainmail_helmet 1`);
+                player.runCommandAsync(`give "${player.name}" chainmail_chestplate 1`);
+                player.runCommandAsync(`give "${player.name}" chainmail_leggings 1`);
+                player.runCommandAsync(`give "${player.name}" chainmail_boots 1`);
                 player.addTag('class_selected');
                 player.addTag('penetrator');
                 player.runCommandAsync(`clear "${player.name}" compass`);

@@ -19,7 +19,7 @@
 			],
 			"animations": {
 				"hold": "animation.stars_and_crescent.hold",
-				"fpp": "animation.item.hand_2"
+				"fpp": "animation.item.stars_and_crescent"
 			},
 			"scripts": {
 				"animate": [
